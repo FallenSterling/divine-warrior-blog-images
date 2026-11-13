@@ -305,13 +305,15 @@
 <style>
 /* Animated scenes: keep their own height (the theme stretches media children to the box, which is 0 tall on phones) */
 .image-with-text__media.dwts-host > .dwts,.image-with-text__media.dwft-host > .dwft{position:relative!important;top:auto!important;left:auto!important;height:auto!important;width:100%!important;aspect-ratio:3/2}
+@container (max-width:520px){.dwts__cap,.dwft__cap{display:none}}
 /* Phones: shorter Tarot Room, Free Spiritual Tools and Gift Finder blocks so there's less scrolling */
 @media screen and (max-width:749px){
   [id$="__image_with_text_xTQgWW"] .image-with-text__content,[id$="__image_with_text_cL7fXH"] .image-with-text__content{padding:1.8rem 2rem 2.4rem!important}
   [id$="__image_with_text_xTQgWW"] .image-with-text__heading,[id$="__image_with_text_cL7fXH"] .image-with-text__heading{font-size:2.6rem!important;margin-bottom:.6rem!important}
   [id$="__image_with_text_xTQgWW"] .image-with-text__text p,[id$="__image_with_text_cL7fXH"] .image-with-text__text p{font-size:1.5rem!important;line-height:1.5!important}
   [id$="__image_with_text_xTQgWW"] .image-with-text__content .button,[id$="__image_with_text_cL7fXH"] .image-with-text__content .button{margin-top:1.2rem!important;min-height:4.4rem!important;font-size:1.3rem!important}
-  [id$="__image_with_text_xTQgWW"] .image-with-text__media-item,[id$="__image_with_text_cL7fXH"] .image-with-text__media-item{padding:0 1.5rem}
+  [id$="__image_with_text_xTQgWW"] .image-with-text__media-item,[id$="__image_with_text_cL7fXH"] .image-with-text__media-item{padding:0!important}
+  [id$="__image_with_text_xTQgWW"] .image-with-text__grid,[id$="__image_with_text_cL7fXH"] .image-with-text__grid{margin-left:-0.5rem;margin-right:-0.5rem}
   [id$="__image_with_text_xTQgWW"] .section-template--padding,[id$="__image_with_text_cL7fXH"] [class*="-padding"]{padding-top:1.6rem!important;padding-bottom:1.6rem!important}
   [id$="__dw_gift_finder"] [class*="-padding"]{padding-top:2.2rem!important;padding-bottom:2.2rem!important}
   [id$="__dw_gift_finder"] .rich-text__text p{font-size:1.5rem!important;line-height:1.5!important}
