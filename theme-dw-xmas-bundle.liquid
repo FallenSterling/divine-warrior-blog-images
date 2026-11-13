@@ -1,0 +1,96 @@
+<div class="dwxb" id="dwxb-{{ section.id }}">
+  <div class="dwxb__snow" aria-hidden="true">{% for i in (1..18) %}<span>&#10052;</span>{% endfor %}</div>
+  <div class="dwxb__inner page-width">
+    <a class="dwxb__img" href="{{ section.settings.link }}">
+      {% if section.settings.image %}{{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '400,600,800,1200', sizes: '(min-width: 750px) 50vw, 100vw', alt: section.settings.heading }}{% endif %}
+    </a>
+    <div class="dwxb__text">
+      <span class="dwxb__badge">&#10022; {{ section.settings.badge }} &#10022;</span>
+      <h2 class="dwxb__h">{{ section.settings.heading }}</h2>
+      <p class="dwxb__p">{{ section.settings.text }}</p>
+      <a class="dwxb__btn" href="{{ section.settings.link }}">{{ section.settings.button }}</a>
+    </div>
+  </div>
+  <a class="dwxb__build page-width" href="/pages/build-your-bundle">
+    <span class="dwxb__build-in">
+      <span class="dwxb__build-fx" aria-hidden="true"><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em></span>
+      <span class="dwxb__build-k">&#10022; New for Christmas &middot; Build your own sacred bundle &#10022;</span>
+      <span class="dwxb__build-t">Mix any treasures: <b>3 items 10% off</b> &middot; <b>5 items 15% off</b> &middot; <b>8+ items 20% off</b></span>
+      <span class="dwxb__build-b">&#10052; Start your bundle &#10052;</span>
+    </span>
+  </a>
+</div>
+<style>
+#dwxb-{{ section.id }}{position:relative;overflow:hidden;background:radial-gradient(ellipse at top,#34332e 0%,#22211e 70%);color:#f3ecdc;padding:3.6rem 0;margin:2.4rem 0}
+#dwxb-{{ section.id }} .dwxb__inner{position:relative;z-index:2;display:grid;gap:2.4rem;align-items:center}
+@media(min-width:750px){#dwxb-{{ section.id }} .dwxb__inner{grid-template-columns:1fr 1fr;gap:4.8rem}#dwxb-{{ section.id }}{padding:5.6rem 0}}
+#dwxb-{{ section.id }} .dwxb__img img{width:100%;height:auto;max-height:420px;object-fit:cover;border-radius:14px;display:block;box-shadow:0 10px 40px rgba(0,0,0,.45);border:1px solid rgba(201,169,97,.5)}
+#dwxb-{{ section.id }} .dwxb__text{text-align:center}
+@media(min-width:750px){#dwxb-{{ section.id }} .dwxb__text{text-align:left}}
+#dwxb-{{ section.id }} .dwxb__badge{display:inline-block;font-size:1.25rem;letter-spacing:.25em;text-transform:uppercase;color:#d8bc7a;border:1px solid rgba(216,188,122,.6);border-radius:30px;padding:.5rem 1.4rem;animation:dwxbGlow 3s ease-in-out infinite}
+#dwxb-{{ section.id }} .dwxb__h{font-size:clamp(2.8rem,7vw,4.4rem);line-height:1.1;margin:1.4rem 0 1rem;background:linear-gradient(90deg,#c9a961 0%,#f6e7b8 40%,#c9a961 60%,#f6e7b8 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:dwxbShine 6s linear infinite}
+#dwxb-{{ section.id }} .dwxb__p{font-size:1.5rem;line-height:1.6;color:rgba(243,236,220,.85);margin:0 auto 2rem;max-width:44rem}
+@media(min-width:750px){#dwxb-{{ section.id }} .dwxb__p{font-size:1.7rem;margin-left:0}}
+#dwxb-{{ section.id }} .dwxb__btn{display:inline-block;background:#e8ddc0;color:#2b2a27;text-decoration:none;letter-spacing:.18em;text-transform:uppercase;font-size:1.3rem;padding:1.3rem 3rem;border-radius:40px;transition:transform .2s,box-shadow .2s}
+#dwxb-{{ section.id }} .dwxb__btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(216,188,122,.35)}
+#dwxb-{{ section.id }} .dwxb__snow{position:absolute;inset:0;pointer-events:none;z-index:1}
+#dwxb-{{ section.id }} .dwxb__snow span{position:absolute;top:-2rem;color:#fff;opacity:.7;animation:dwxbFall linear infinite}
+{% for i in (1..18) %}{% assign l = i | times: 53 | modulo: 100 %}{% assign d = i | times: 7 | modulo: 9 | plus: 7 %}{% assign dl = i | times: 13 | modulo: 11 %}{% assign s = i | modulo: 3 | times: 4 | plus: 9 %}#dwxb-{{ section.id }} .dwxb__snow span:nth-child({{ i }}){left:{{ l }}%;animation-duration:{{ d }}s;animation-delay:-{{ dl }}s;font-size:{{ s }}px}
+{% endfor %}
+#dwxb-{{ section.id }} .dwxb__build{position:relative;z-index:2;display:block;margin-top:3.2rem;text-decoration:none}
+#dwxb-{{ section.id }} .dwxb__build-in{position:relative;overflow:hidden;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.9rem 2rem;padding:2.2rem 2.4rem;border-radius:18px;background:linear-gradient(135deg,#fffaf0 0%,#fbefd2 30%,#f6e2b3 55%,#fdf4de 80%,#f3dca6 100%);color:#3a2b10;text-align:center;box-shadow:0 0 0 2px rgba(216,188,122,.55),0 8px 30px rgba(0,0,0,.3);animation:dwxbRib 3s ease-in-out infinite}
+#dwxb-{{ section.id }} .dwxb__build-in::before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.85),rgba(255,255,255,0));transform:skewX(-20deg);animation:dwxbSweep 3.6s ease-in-out infinite;z-index:1}
+#dwxb-{{ section.id }} .dwxb__build-fx{position:absolute;inset:0;pointer-events:none;z-index:1}
+#dwxb-{{ section.id }} .dwxb__build-fx i{position:absolute;font-style:normal;color:#fff;text-shadow:0 0 3px #c9a24f,0 0 9px rgba(201,162,79,.95);opacity:0;animation:dwxbTw 2.4s ease-in-out infinite}
+#dwxb-{{ section.id }} .dwxb__build-fx em{position:absolute;top:-1.6rem;font-style:normal;color:#fff;text-shadow:0 0 2px #b9a37a,0 0 6px rgba(185,163,122,.7);opacity:.9;animation:dwxbSnow linear infinite}
+#dwxb-{{ section.id }} .dwxb__build-k,#dwxb-{{ section.id }} .dwxb__build-t,#dwxb-{{ section.id }} .dwxb__build-b{position:relative;z-index:2}
+#dwxb-{{ section.id }} .dwxb__build-k{width:100%;font-size:1.3rem;letter-spacing:.24em;text-transform:uppercase;color:#9b2c2c;font-weight:600}
+#dwxb-{{ section.id }} .dwxb__build-t{font-size:1.65rem;line-height:1.5}
+#dwxb-{{ section.id }} .dwxb__build-t b{color:#4f3608}
+#dwxb-{{ section.id }} .dwxb__build-b{display:inline-block;background:linear-gradient(180deg,#c0413f,#962b2b);color:#fff8ec;border:1.5px solid #e2c27a;border-radius:999px;padding:1.05rem 2.6rem;font-size:1.35rem;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 4px 14px rgba(150,43,43,.35);transition:transform .2s}
+#dwxb-{{ section.id }} .dwxb__build:hover .dwxb__build-b{transform:translateY(-2px)}
+#dwxb-{{ section.id }} .dwxb__build-fx i:nth-child(1){top:88%;left:4.8%;font-size:1.3rem;animation-delay:0.0s}
+#dwxb-{{ section.id }} .dwxb__build-fx i:nth-child(2){top:8%;left:8.3%;font-size:1.4rem;animation-delay:0.37s}
+#dwxb-{{ section.id }} .dwxb__build-fx i:nth-child(3){top:88%;left:17.3%;font-size:1.6rem;animation-delay:0.74s}
+#dwxb-{{ section.id }} .dwxb__build-fx i:nth-child(4){top:72%;left:22.1%;font-size:1.3rem;animation-delay:1.11s}
+#dwxb-{{ section.id }} .dwxb__build-fx i:nth-child(5){top:14%;left:30.0%;font-size:1.4rem;animation-delay:1.48s}
+#dwxb-{{ section.id }} .dwxb__build-fx i:nth-child(6){top:8%;left:39.3%;font-size:1.1rem;animation-delay:1.85s}
+#dwxb-{{ section.id }} .dwxb__build-fx i:nth-child(7){top:72%;left:45.5%;font-size:1.4rem;animation-delay:2.22s}
+#dwxb-{{ section.id }} .dwxb__build-fx i:nth-child(8){top:8%;left:52.3%;font-size:1.3rem;animation-delay:0.19s}
+#dwxb-{{ section.id }} .dwxb__build-fx i:nth-child(9){top:72%;left:57.2%;font-size:1.6rem;animation-delay:0.56s}
+#dwxb-{{ section.id }} .dwxb__build-fx i:nth-child(10){top:80%;left:65.7%;font-size:1.4rem;animation-delay:0.93s}
+#dwxb-{{ section.id }} .dwxb__build-fx i:nth-child(11){top:80%;left:73.2%;font-size:1.5rem;animation-delay:1.3s}
+#dwxb-{{ section.id }} .dwxb__build-fx i:nth-child(12){top:14%;left:80.3%;font-size:1.4rem;animation-delay:1.67s}
+#dwxb-{{ section.id }} .dwxb__build-fx i:nth-child(13){top:88%;left:85.4%;font-size:1.5rem;animation-delay:2.04s}
+#dwxb-{{ section.id }} .dwxb__build-fx i:nth-child(14){top:8%;left:94.5%;font-size:1.3rem;animation-delay:0.01s}
+#dwxb-{{ section.id }} .dwxb__build-fx em:nth-of-type(1){left:4.2%;font-size:1.4rem;animation-duration:5.4s;animation-delay:-5.5s}
+#dwxb-{{ section.id }} .dwxb__build-fx em:nth-of-type(2){left:11.2%;font-size:1.0rem;animation-duration:4.5s;animation-delay:-4.7s}
+#dwxb-{{ section.id }} .dwxb__build-fx em:nth-of-type(3){left:17.5%;font-size:1.1rem;animation-duration:5.5s;animation-delay:-2.1s}
+#dwxb-{{ section.id }} .dwxb__build-fx em:nth-of-type(4){left:27.7%;font-size:1.3rem;animation-duration:4.2s;animation-delay:-3.1s}
+#dwxb-{{ section.id }} .dwxb__build-fx em:nth-of-type(5){left:34.0%;font-size:1.1rem;animation-duration:6.8s;animation-delay:-2.5s}
+#dwxb-{{ section.id }} .dwxb__build-fx em:nth-of-type(6){left:46.8%;font-size:0.9rem;animation-duration:5.7s;animation-delay:-4.7s}
+#dwxb-{{ section.id }} .dwxb__build-fx em:nth-of-type(7){left:53.9%;font-size:1.1rem;animation-duration:5.1s;animation-delay:-3.0s}
+#dwxb-{{ section.id }} .dwxb__build-fx em:nth-of-type(8){left:61.8%;font-size:0.9rem;animation-duration:4.3s;animation-delay:-1.6s}
+#dwxb-{{ section.id }} .dwxb__build-fx em:nth-of-type(9){left:69.2%;font-size:0.9rem;animation-duration:6.2s;animation-delay:-1.9s}
+#dwxb-{{ section.id }} .dwxb__build-fx em:nth-of-type(10){left:76.5%;font-size:1.3rem;animation-duration:5.3s;animation-delay:-4.3s}
+#dwxb-{{ section.id }} .dwxb__build-fx em:nth-of-type(11){left:86.3%;font-size:1.1rem;animation-duration:6.8s;animation-delay:-2.1s}
+#dwxb-{{ section.id }} .dwxb__build-fx em:nth-of-type(12){left:92.7%;font-size:1.2rem;animation-duration:4.7s;animation-delay:-1.7s}
+@keyframes dwxbSweep{0%{left:-60%}55%,100%{left:130%}}
+@keyframes dwxbTw{0%,100%{opacity:0;transform:scale(.4) rotate(0)}50%{opacity:1;transform:scale(1.2) rotate(45deg)}}
+@keyframes dwxbSnow{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.9}90%{opacity:.9}100%{transform:translateY(16rem) rotate(200deg);opacity:0}}
+@keyframes dwxbRib{0%,100%{box-shadow:0 0 0 2px rgba(216,188,122,.5),0 8px 30px rgba(0,0,0,.3)}50%{box-shadow:0 0 0 3px rgba(233,204,134,.85),0 8px 34px rgba(216,188,122,.35)}}
+@keyframes dwxbFall{0%{transform:translateY(0) rotate(0)}100%{transform:translateY(110vh) rotate(360deg)}}
+@keyframes dwxbShine{to{background-position:200% center}}
+@keyframes dwxbGlow{0%,100%{box-shadow:0 0 0 rgba(216,188,122,0)}50%{box-shadow:0 0 14px rgba(216,188,122,.45)}}
+@media(prefers-reduced-motion:reduce){#dwxb-{{ section.id }} .dwxb__snow,#dwxb-{{ section.id }} *{animation:none!important}}
+</style>
+{% schema %}
+{"name":"DW Xmas bundle banner","settings":[
+{"type":"image_picker","id":"image","label":"Image"},
+{"type":"text","id":"badge","label":"Badge","default":"Save 15%"},
+{"type":"text","id":"heading","label":"Heading","default":"Christmas Gift Bundles"},
+{"type":"textarea","id":"text","label":"Text"},
+{"type":"text","id":"button","label":"Button","default":"Shop Gift Bundles"},
+{"type":"url","id":"link","label":"Link"}],
+"presets":[{"name":"DW Xmas bundle banner"}]}
+{% endschema %}
