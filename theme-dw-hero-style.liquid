@@ -1,0 +1,133 @@
+{%- comment -%} Divine Warrior: styling for the homepage Christmas hero banner. {%- endcomment -%}
+<style>
+  [id$="__image_banner"] .banner::after { opacity: 0 !important; }
+  [id$="__image_banner"] .banner__media::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 46% 64% at 28% 48%, rgba(248,243,233,.86) 0%, rgba(248,243,233,.7) 45%, rgba(248,243,233,0) 80%); }
+  [id$="__image_banner"] .banner__box { background: transparent !important; max-width: 640px !important; padding: 16px 20px !important; text-align: center !important; }
+  [id$="__image_banner"] .banner__text.caption-with-letter-spacing,
+  [id$="__image_banner"] .banner__text.caption-with-letter-spacing * { color: #7a5719 !important; font-size: 13px !important; letter-spacing: 4px !important;
+    font-weight: 600 !important; text-shadow: none !important; text-transform: uppercase; font-family: var(--font-heading-family); }
+  [id$="__image_banner"] .banner__heading { color: #2b2622 !important; text-shadow: 0 0 14px rgba(248,243,233,.9) !important; font-size: clamp(32px, 4vw, 50px) !important;
+    font-weight: 400 !important; letter-spacing: .5px; line-height: 1.12; margin-top: 0 !important; }
+  [id$="__image_banner"] .banner__heading::before { content: '\2726\00a0\00a0\00a0The Christmas Collection\00a0\00a0\00a0\2726'; display: block; margin-bottom: 16px;
+    color: #7a5719; font-size: 13px; letter-spacing: 4px; font-weight: 600; text-transform: uppercase; line-height: 1.4; font-family: var(--font-heading-family); }
+  @media screen and (max-width: 749px) { [id$="__image_banner"] .banner__heading::before { font-size: 11px; letter-spacing: 3px; margin-bottom: 12px; } }
+  [id$="__image_banner"] .banner__heading::after { content: '\2727'; display: block; width: min(300px, 70%); margin: 16px auto 0; color: #9a7631;
+    font-size: 16px; line-height: 1; font-family: serif;
+    background: linear-gradient(#b89a5c, #b89a5c) left center / calc(50% - 18px) 1px no-repeat, linear-gradient(#b89a5c, #b89a5c) right center / calc(50% - 18px) 1px no-repeat; }
+  [id$="__image_banner"] .banner__text.subtitle, [id$="__image_banner"] .banner__text.subtitle * { font-style: italic !important; font-weight: 700 !important;
+    color: #ffffff !important; font-size: clamp(17px, 1.7vw, 21px) !important; line-height: 1.5 !important;
+    letter-spacing: .2px !important; text-transform: none !important;
+    text-shadow: 0 1px 2px rgba(51,49,46,.75), 0 0 8px rgba(51,49,46,.45), 0 0 18px rgba(51,49,46,.3) !important; }
+  [id$="__image_banner"] .banner__text.subtitle { max-width: 470px !important; margin: 14px auto 0 !important; padding: 0 !important; background: none !important; }
+  [id$="__image_banner"] .banner__buttons { justify-content: center; margin-top: 22px; }
+  [id$="__image_banner"] .banner__buttons > * { flex-grow: 0 !important; min-width: 0 !important; }
+  #MainContent [id$="__image_banner"] .banner__buttons .button, #MainContent [id$="__image_banner"] .banner__buttons .button.button--primary {
+    background-color: #e9dcbc !important; color: #262626 !important; border: none !important; box-shadow: none !important;
+    border-radius: 999px !important; font-size: 14px !important; letter-spacing: 2.5px !important; font-weight: 600 !important;
+    min-height: 48px !important; padding: 0 40px !important; }
+  #MainContent [id$="__image_banner"] .banner__buttons .button:hover { background-color: #dfcea6 !important; color: #262626 !important; }
+  #MainContent [id$="__image_banner"] .banner__buttons .button::before, #MainContent [id$="__image_banner"] .banner__buttons .button::after { border-radius: 999px !important; box-shadow: none !important; }
+  /* Homepage Add to cart buttons: same cream as every other button */
+  #MainContent [id$="__featured_collection1"] .quick-add__submit, #MainContent [id$="__featured_collection1"] .product-form__submit {
+    background-color: #e9dcbc !important; color: #262626 !important; border: none !important; box-shadow: none !important; }
+  #MainContent [id$="__featured_collection1"] .quick-add__submit:hover { background-color: #dfcea6 !important; }
+  /* Quote band under the hero: one line on phones */
+  @media screen and (max-width: 749px) {
+    #MainContent [id$="__rich_text_BJWyyx"] .rich-text__text p { font-size: 2.2vw !important; letter-spacing: .3px !important; white-space: nowrap; }
+    #MainContent [id$="__rich_text_BJWyyx"] .rich-text__blocks { padding-left: 6px; padding-right: 6px; }
+    #MainContent [id$="__featured_collection1"] .quick-add__submit, #MainContent [id$="__featured_collection1"] .product-form__submit { font-size: 11px !important; letter-spacing: 1px !important; }
+    [id$="__image_banner"] .banner__text.subtitle { padding-left: 34px !important; padding-right: 34px !important; }
+  }
+  @media screen and (min-width: 750px) {
+    [id$="__image_banner"] .banner { min-height: 540px !important; max-height: none !important; }
+    [id$="__image_banner"] .banner__media img { object-position: center 85% !important; }
+    [id$="__image_banner"] .banner__content { justify-content: flex-start !important; }
+    [id$="__image_banner"] .banner__box { margin-left: 3vw !important; margin-right: auto !important; }
+  }
+  @media screen and (max-width: 749px) {
+    [id$="__image_banner"] .banner { min-height: 620px !important; }
+    [id$="__image_banner"] .banner__media img { object-position: 74% bottom !important; }
+    [id$="__image_banner"] .banner__media::after { background: linear-gradient(180deg, rgba(248,243,233,.93) 0%, rgba(248,243,233,.72) 42%, rgba(248,243,233,0) 66%); }
+    [id$="__image_banner"] .banner__content { align-items: flex-start !important; }
+    [id$="__image_banner"] .banner__box { width: 100% !important; max-width: 100% !important; box-sizing: border-box; padding-left: 18px !important; padding-right: 18px !important; }
+    [id$="__image_banner"] .banner__text.subtitle { max-width: 100% !important; }
+    [id$="__image_banner"] .banner__box { padding-top: 26px !important; }
+    [id$="__image_banner"] .banner__text.caption-with-letter-spacing, [id$="__image_banner"] .banner__text.caption-with-letter-spacing * { font-size: 11px !important; letter-spacing: 3px !important; }
+    #MainContent [id$="__image_banner"] .banner__buttons .button { font-size: 13px !important; padding: 0 32px !important; min-height: 46px !important; }
+  }
+  /* Sparkle and glitter over the hero picture */
+  [id$="__image_banner"] .banner { position: relative; }
+  [id$="__image_banner"] .banner__content { position: relative; z-index: 3; }
+  [id$="__image_banner"] .dwhs-fx { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+  [id$="__image_banner"] .dwhs-fx i { position: absolute; font-style: normal; line-height: 1; color: #fffaf0; opacity: 0;
+    text-shadow: 0 0 4px #e9cc86, 0 0 10px rgba(233,204,134,.95), 0 0 18px rgba(255,236,170,.6); animation: dwhsTw 3s ease-in-out infinite; }
+  [id$="__image_banner"] .dwhs-fx b { position: absolute; top: -10px; border-radius: 50%; background: #fff6dc;
+    box-shadow: 0 0 6px 1px rgba(255,230,160,.9); opacity: 0; animation: dwhsFall linear infinite; }
+  [id$="__image_banner"] .dwhs-fx i:nth-child(1){top:43.8%;left:55.2%;font-size:21px;animation-delay:1.49s;animation-duration:2.9s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(2){top:55.7%;left:19.5%;font-size:16px;animation-delay:2.02s;animation-duration:3.3s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(3){top:12.3%;left:30.8%;font-size:11px;animation-delay:2.59s;animation-duration:3.2s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(4){top:7.7%;left:95.3%;font-size:22px;animation-delay:2.09s;animation-duration:3.1s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(5){top:17.9%;left:3.4%;font-size:16px;animation-delay:0.19s;animation-duration:2.5s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(6){top:25.3%;left:4.9%;font-size:16px;animation-delay:1.41s;animation-duration:3.4s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(7){top:49.7%;left:62.8%;font-size:16px;animation-delay:2.12s;animation-duration:2.8s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(8){top:28.5%;left:96.8%;font-size:22px;animation-delay:2.69s;animation-duration:3.2s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(9){top:31.7%;left:23.8%;font-size:13px;animation-delay:0.22s;animation-duration:3.3s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(10){top:39.2%;left:82.4%;font-size:15px;animation-delay:3.07s;animation-duration:3.4s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(11){top:4.0%;left:21.9%;font-size:21px;animation-delay:1.5s;animation-duration:3.6s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(12){top:39.0%;left:8.9%;font-size:18px;animation-delay:2.49s;animation-duration:2.6s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(13){top:11.7%;left:33.6%;font-size:22px;animation-delay:2.43s;animation-duration:2.4s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(14){top:25.7%;left:11.6%;font-size:11px;animation-delay:2.55s;animation-duration:2.4s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(15){top:53.2%;left:44.5%;font-size:12px;animation-delay:2.34s;animation-duration:2.4s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(16){top:60.6%;left:13.1%;font-size:15px;animation-delay:0.68s;animation-duration:2.6s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(17){top:89.4%;left:78.3%;font-size:14px;animation-delay:2.83s;animation-duration:2.5s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(18){top:38.7%;left:83.2%;font-size:18px;animation-delay:0.32s;animation-duration:3.6s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(19){top:22.8%;left:26.5%;font-size:19px;animation-delay:1.05s;animation-duration:2.6s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(20){top:10.5%;left:10.6%;font-size:17px;animation-delay:0.78s;animation-duration:3.0s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(21){top:36.7%;left:45.1%;font-size:22px;animation-delay:1.55s;animation-duration:3.0s}
+  [id$="__image_banner"] .dwhs-fx i:nth-child(22){top:80.3%;left:19.4%;font-size:12px;animation-delay:2.91s;animation-duration:3.3s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(1){left:25.5%;width:2.6px;height:2.6px;animation-duration:12.2s;animation-delay:-13.2s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(2){left:20.3%;width:4.9px;height:4.9px;animation-duration:13.2s;animation-delay:-8.4s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(3){left:42.3%;width:2.3px;height:2.3px;animation-duration:7.3s;animation-delay:-13.5s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(4){left:24.4%;width:4.1px;height:4.1px;animation-duration:8.8s;animation-delay:-11.5s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(5){left:59.5%;width:2.9px;height:2.9px;animation-duration:8.2s;animation-delay:-10.1s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(6){left:7.7%;width:2.7px;height:2.7px;animation-duration:10.9s;animation-delay:-11.9s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(7){left:61.2%;width:2.8px;height:2.8px;animation-duration:13.4s;animation-delay:-2.9s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(8){left:2.6%;width:2.8px;height:2.8px;animation-duration:10.1s;animation-delay:-0.8s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(9){left:18.3%;width:3.1px;height:3.1px;animation-duration:11.0s;animation-delay:-1.8s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(10){left:36.5%;width:4.7px;height:4.7px;animation-duration:13.9s;animation-delay:-9.2s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(11){left:68.7%;width:3.8px;height:3.8px;animation-duration:8.0s;animation-delay:-0.5s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(12){left:2.8%;width:4.7px;height:4.7px;animation-duration:11.9s;animation-delay:-13.5s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(13){left:3.1%;width:3.9px;height:3.9px;animation-duration:10.4s;animation-delay:-10.2s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(14){left:32.3%;width:5.0px;height:5.0px;animation-duration:7.5s;animation-delay:-7.6s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(15){left:73.2%;width:4.7px;height:4.7px;animation-duration:12.2s;animation-delay:-9.9s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(16){left:78.7%;width:4.7px;height:4.7px;animation-duration:9.5s;animation-delay:-9.6s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(17){left:89.3%;width:4.6px;height:4.6px;animation-duration:9.9s;animation-delay:-11.1s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(18){left:85.6%;width:3.7px;height:3.7px;animation-duration:11.4s;animation-delay:-5.4s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(19){left:58.1%;width:3.8px;height:3.8px;animation-duration:7.6s;animation-delay:-9.0s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(20){left:98.3%;width:4.6px;height:4.6px;animation-duration:12.1s;animation-delay:-5.4s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(21){left:73.0%;width:3.7px;height:3.7px;animation-duration:10.1s;animation-delay:-11.7s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(22){left:9.2%;width:4.3px;height:4.3px;animation-duration:7.2s;animation-delay:-8.4s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(23){left:48.1%;width:2.7px;height:2.7px;animation-duration:11.9s;animation-delay:-7.0s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(24){left:61.2%;width:4.8px;height:4.8px;animation-duration:8.8s;animation-delay:-0.2s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(25){left:30.5%;width:4.0px;height:4.0px;animation-duration:8.4s;animation-delay:-2.4s}
+  [id$="__image_banner"] .dwhs-fx b:nth-of-type(26){left:89.8%;width:4.0px;height:4.0px;animation-duration:10.1s;animation-delay:-12.5s}
+  @keyframes dwhsTw { 0%,100% { opacity: 0; transform: scale(.3) rotate(0deg); } 50% { opacity: 1; transform: scale(1.15) rotate(45deg); } }
+  @keyframes dwhsFall { 0% { transform: translateY(0) translateX(0); opacity: 0; } 10% { opacity: .95; } 50% { transform: translateY(50vh) translateX(12px); } 90% { opacity: .8; } 100% { transform: translateY(100vh) translateX(-8px); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { [id$="__image_banner"] .dwhs-fx { display: none; } }
+</style>
+<script>
+(function(){
+  function add(){
+    var bs=document.querySelectorAll('[id$="__image_banner"] .banner');
+    for(var k=0;k<bs.length;k++){var b=bs[k];if(b.querySelector('.dwhs-fx'))continue;
+      var h='<div class="dwhs-fx" aria-hidden="true">';for(var i=0;i<22;i++)h+='<i>&#10022;</i>';for(var j=0;j<26;j++)h+='<b></b>';h+='</div>';
+      var m=b.querySelector('.banner__media');if(m)m.insertAdjacentHTML('afterend',h);else b.insertAdjacentHTML('afterbegin',h);}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',add);else add();
+  document.addEventListener('shopify:section:load',add);
+})();
+</script>
+{% schema %}
+{ "name": "Christmas hero styling", "settings": [] }
+{% endschema %}
