@@ -1,0 +1,57 @@
+{%- comment -%}Divine Warrior: bundle saving messages in the basket, and a "bundle and save" strip on product pages{%- endcomment -%}
+<style>
+.dwbb{margin:0 0 1.2rem;padding:1rem 1.4rem;border-radius:12px;background:rgba(251,248,241,.9);border:1px dashed rgba(181,143,74,.55);text-align:center;font-size:1.35rem;line-height:1.45;color:#3b342b}
+.dwbb strong{color:#2b2a27}
+.dwbb a{color:#86642f;text-underline-offset:3px}
+.dwbb--on{border:0;background:linear-gradient(135deg,#fbf1d6 0%,#f0d9a0 40%,#f8e7bb 60%,#e9cc86 100%);box-shadow:0 4px 16px rgba(181,143,74,.22);color:#3a2b10}
+.dwbb--on strong{color:#4f3608}
+.dwps{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .9rem;margin:.6rem 0 1.4rem;padding:.8rem 1.2rem;border-radius:12px;background:linear-gradient(135deg,#fbf3dc,#f3e2b5);font-size:1.35rem;color:#3a2b10}
+.dwps b{color:#86642f;letter-spacing:.06em}
+.dwps a{margin-left:auto;color:#4f3608;font-weight:600;text-underline-offset:3px;white-space:nowrap}
+</style>
+<script>
+(function(){
+  if(window.__dwBundleBar)return;window.__dwBundleBar=true;
+  var TIERS=[{n:3,p:10},{n:5,p:15},{n:8,p:20}],URL='/pages/build-your-bundle';
+  function tierFor(c){var t=null;TIERS.forEach(function(x){if(c>=x.n)t=x;});return t;}
+  function nextTier(c){for(var i=0;i<TIERS.length;i++)if(c<TIERS[i].n)return TIERS[i];return null;}
+  function html(c){
+    var t=tierFor(c),nx=nextTier(c);
+    if(!t){var k=nx.n-c;return '<div class="dwbb">Add <strong>'+k+' more item'+(k===1?'':'s')+'</strong> to save <strong>'+nx.p+'%</strong> on your whole basket &middot; <a href="'+URL+'">Build a bundle</a></div>';}
+    var s='&#10022; Bundle saving: <strong>'+t.p+'% off</strong> your basket &#10022;';
+    if(nx){var m=nx.n-c;s+='<br>Add '+m+' more item'+(m===1?'':'s')+' to save '+nx.p+'%';}
+    return '<div class="dwbb dwbb--on">'+s+'</div>';
+  }
+  function place(c){
+    ['#CartDrawer .drawer__footer','#main-cart-footer .cart__blocks'].forEach(function(sel){
+      var el=document.querySelector(sel);if(!el)return;
+      var old=el.querySelector(':scope > .dwbb');if(old)old.remove();
+      if(c<1)return;
+      var fs=el.querySelector(':scope > .dwfs');
+      if(fs)fs.insertAdjacentHTML('afterend',html(c));else el.insertAdjacentHTML('afterbegin',html(c));
+    });
+  }
+  var busy=false,timer=null;
+  function update(){if(busy){schedule();return;}busy=true;fetch('/cart.js',{credentials:'same-origin'}).then(function(r){return r.json();}).then(function(c){place(c.item_count);}).catch(function(){}).finally(function(){busy=false;});}
+  function schedule(){clearTimeout(timer);timer=setTimeout(update,300);}
+  function own(n){return n.nodeType===1&&(n.classList.contains('dwbb')||n.classList.contains('dwfs'));}
+  var mo=new MutationObserver(function(ms){
+    for(var i=0;i<ms.length;i++){var m=ms[i],t=m.target.nodeType===1?m.target:m.target.parentElement;
+      if(!t||t.closest('.dwbb')||t.closest('.dwfs'))continue;
+      var ns=[].slice.call(m.addedNodes).concat([].slice.call(m.removedNodes));if(ns.length&&ns.every(own))continue;
+      if(t.closest('#CartDrawer')||t.closest('#main-cart-footer')||t.closest('#cart-icon-bubble')){schedule();return;}}
+  });
+  function strip(){
+    {%- if template.name == 'product' -%}
+    var p=document.querySelector('[id^="price-template"][id$="__main"]');
+    if(!p||document.querySelector('.dwps'))return;
+    p.insertAdjacentHTML('afterend','<div class="dwps"><b>&#10022; BUNDLE &amp; SAVE</b><span>3 items 10% &middot; 5 items 15% &middot; 8+ items 20%</span><a href="'+URL+'">Build a bundle &rarr;</a></div>');
+    {%- endif -%}
+  }
+  function start(){strip();update();mo.observe(document.body,{childList:true,subtree:true,characterData:true});}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+})();
+</script>
+{% schema %}
+{"name":"DW bundle saving bar","settings":[]}
+{% endschema %}

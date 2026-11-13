@@ -1,0 +1,70 @@
+{%- comment -%}Divine Warrior: Build your sacred bundle. Mix any items, savings by item count (3 = 10%, 5 = 15%, 8 = 20%). Discounts are Shopify automatic discounts.{%- endcomment -%}
+<style>
+.dwb{max-width:1100px;margin:0 auto;padding:2.4rem 1.5rem 0;color:#2e2620}
+.dwb__head{text-align:center;margin-bottom:1.6rem}
+.dwb__eyebrow{font-size:1.3rem;letter-spacing:.3em;color:#86642f;text-transform:uppercase;margin:0}
+.dwb__title{margin:.6rem 0 .4rem;font-size:clamp(2.6rem,4vw,3.6rem)}
+.dwb__sub{margin:0 auto;max-width:56rem;font-size:1.6rem;color:#5a4f44}
+.dwb__tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;max-width:62rem;margin:1.8rem auto 0}
+.dwb__tier{border:1px solid #e2d6bf;border-radius:14px;padding:1.1rem .8rem;background:rgba(251,248,241,.85);text-align:center;transition:all .3s}
+.dwb__tier b{display:block;font-size:2rem;color:#86642f}
+.dwb__tier span{font-size:1.35rem;color:#5a4f44}
+.dwb__tier.is-on{background:linear-gradient(135deg,#fbf1d6,#f0d9a0 45%,#f8e7bb);border-color:transparent;box-shadow:0 6px 18px rgba(181,143,74,.25)}
+.dwb__tier.is-on b{color:#4f3608}
+.dwb__chips{display:flex;gap:.8rem;overflow-x:auto;padding:1.6rem .2rem 1rem;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.dwb__chips::-webkit-scrollbar{display:none}
+.dwb__chip{flex:0 0 auto;border:1px solid #c9b48a;background:#fffdf8;color:#2e2620;border-radius:999px;padding:.7rem 1.6rem;font-size:1.4rem;cursor:pointer;font-family:inherit}
+.dwb__chip.is-active{background:#33312e;color:#f5efe2;border-color:#33312e}
+.dwb__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem}
+@media(min-width:750px){.dwb__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:990px){.dwb__grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.dwb__card{background:#fffdf8;border:1px solid #e9dfcb;border-radius:14px;padding:.9rem;display:flex;flex-direction:column}
+.dwb__img{display:block;aspect-ratio:1;border-radius:10px;overflow:hidden;background:#f4eee2}
+.dwb__img img{width:100%;height:100%;object-fit:cover;display:block}
+.dwb__t{font-size:1.4rem;line-height:1.35;margin:.8rem 0 .4rem;color:#2e2620;text-decoration:none;flex:1}
+.dwb__row{display:flex;justify-content:space-between;align-items:center;gap:.6rem}
+.dwb__p{font-size:1.5rem}
+.dwb__add{border:1px solid #b58f4a;background:#fffdf8;color:#2e2620;border-radius:999px;padding:.6rem 1.3rem;font-size:1.3rem;cursor:pointer;font-family:inherit;white-space:nowrap;text-decoration:none}
+.dwb__add.is-added{background:#33312e;color:#f5efe2;border-color:#33312e}
+.dwb__add[disabled]{opacity:.6}
+.dwb__more{display:block;margin:1.8rem auto 0;border:1px solid #c9b48a;background:transparent;border-radius:999px;padding:.9rem 2.4rem;font-size:1.4rem;cursor:pointer;font-family:inherit;color:#2e2620}
+.dwb__msg{text-align:center;color:#5a4f44;font-size:1.5rem;padding:3rem 0}
+.dwb__tray{position:sticky;bottom:0;z-index:5;margin:2.4rem -1.5rem 0;padding:1.3rem 1.5rem calc(1.3rem + env(safe-area-inset-bottom));background:rgba(246,239,223,.97);border-top:1px solid #e2d6bf;box-shadow:0 -8px 24px rgba(120,95,50,.10)}
+.dwb__trayin{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:.6rem 1.6rem;align-items:center}
+.dwb__count{font-size:1.5rem}
+.dwb__count b{font-weight:600}
+.dwb__bar{grid-column:1/-1;height:7px;border-radius:7px;background:rgba(188,154,60,.18);overflow:hidden}
+.dwb__fill{display:block!important;height:100%;width:0;border-radius:7px;background:linear-gradient(90deg,#b8862f,#f3d98c,#c99a3e);transition:width .5s ease}
+.dwb__hint{font-size:1.4rem;color:#86642f}
+.dwb__go{grid-row:1/3;grid-column:2;background:linear-gradient(180deg,#3a3835,#2d2b28);color:#f5efe2;border:1.5px solid #b58f4a;border-radius:999px;padding:1.1rem 2.2rem;font-size:1.5rem;letter-spacing:.08em;text-decoration:none;white-space:nowrap}
+@media(max-width:749px){.dwb__trayin{grid-template-columns:1fr}.dwb__go{grid-row:auto;grid-column:auto;text-align:center}.dwb__tier b{font-size:1.7rem}}
+</style>
+
+<div class="dwb" data-dw-bundle>
+  <div class="dwb__head">
+    <p class="dwb__eyebrow">&#10022;&nbsp; Build your sacred bundle &nbsp;&#10022;</p>
+    <h1 class="dwb__title">{{ page.title | default: 'Mix, match and save' }}</h1>
+    <p class="dwb__sub">Choose any treasures you love. The more you add, the more you save &ndash; your saving is taken off automatically in the basket.</p>
+    <div class="dwb__tiers" data-dwb-tiers>
+      <div class="dwb__tier" data-n="3"><b>10% off</b><span>3 items</span></div>
+      <div class="dwb__tier" data-n="5"><b>15% off</b><span>5 items</span></div>
+      <div class="dwb__tier" data-n="8"><b>20% off</b><span>8+ items</span></div>
+    </div>
+  </div>
+  <div class="dwb__chips" data-dwb-chips role="tablist" aria-label="Choose a category"></div>
+  <div class="dwb__grid" data-dwb-grid aria-live="polite"></div>
+  <button type="button" class="dwb__more" data-dwb-more hidden>Show more treasures</button>
+  <div class="dwb__tray" data-dwb-tray>
+    <div class="dwb__trayin">
+      <div class="dwb__count" data-dwb-count>Your bundle &middot; <b>0 items</b></div>
+      <a class="dwb__go" href="{{ routes.cart_url }}">View basket &rarr;</a>
+      <div class="dwb__bar"><div class="dwb__fill" data-dwb-fill></div></div>
+      <div class="dwb__hint" data-dwb-hint>Add 3 items to save 10%</div>
+    </div>
+  </div>
+</div>
+<script src="{{ 'dw-bundle.js' | asset_url }}" defer></script>
+
+{% schema %}
+{"name":"DW bundle builder","settings":[],"presets":[{"name":"DW bundle builder"}]}
+{% endschema %}
