@@ -1,0 +1,223 @@
+{% comment %}
+  Divine Warrior mega menu: one "Shop" panel with categories on the left
+  and that category's collections on the right. Other menu items render as normal.
+{% endcomment %}
+<style>
+  @media screen and (min-width: 990px) {
+    .header__inline-menu .list-menu--inline { justify-content: center; flex-wrap: nowrap; }
+    .header__inline-menu .header__menu-item { font-size: 18px; letter-spacing: .4px; padding: 10px 30px 10px 16px; white-space: nowrap; }
+    .header__inline-menu a.header__menu-item { padding-right: 16px; }
+    .header__inline-menu .header__menu-item .icon-caret { right: 10px; }
+    .mega-menu__content { padding-top: 26px; padding-bottom: 26px; max-height: calc(100vh - 220px); overflow-y: auto; }
+    .mega-menu__link { font-size: 17px; line-height: 1.35; padding-top: 5px; padding-bottom: 5px; color: rgb(var(--color-foreground)); font-weight: 600; letter-spacing: .2px; }
+    .mega-menu__link:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .mega-menu__list.mega-menu__list--condensed { display: grid !important; grid-template-columns: repeat(3, max-content); justify-content: center; column-gap: 64px; row-gap: 2px; }
+    .header--top-center .mega-menu__list--condensed > li { width: auto !important; padding-right: 0 !important; }
+    .mega-menu__list--condensed .mega-menu__link--level-2 { font-weight: 600; font-size: 18px; padding: 7px 0; color: rgb(var(--color-foreground)); }
+
+    .dw-shop { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 36px; align-items: start; }
+    .dw-shop__rail { list-style: none; margin: 0; padding: 0 28px 0 0; border-right: 1px solid rgba(var(--color-foreground), .18); }
+    .dw-shop__tab { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 11px 12px; margin-bottom: 2px; border-radius: 8px;
+      font-size: 19px; line-height: 1.25; font-weight: 600; color: rgb(var(--color-foreground)); text-decoration: none; }
+    .dw-shop__tab::after { content: '\203A'; font-size: 20px; opacity: .45; }
+    .dw-shop__tab:hover { color: #6b4f1d; }
+    .dw-shop__tab.is-active { background: none; border-radius: 0; box-shadow: inset 3px 0 0 #8a6a2e; color: #5a4220; font-weight: 700; }
+    .dw-shop__tab.is-active::after { opacity: 1; }
+    .dw-shop__rail-all { display: block; margin-top: 14px; padding: 10px 12px; font-size: 15px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: rgb(var(--color-foreground)); }
+    .dw-shop__panel[hidden] { display: none !important; }
+    .dw-shop__groups { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px 34px; list-style: none; margin: 0; padding: 0; }
+    .header--top-center .dw-shop__groups > li { width: auto !important; padding: 0 !important; }
+    .dw-shop__groups .mega-menu__link--level-2 { font-size: 15px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase;
+      color: rgb(var(--color-foreground)); border-bottom: 1px solid rgba(var(--color-foreground), .18); padding: 0 0 8px; margin-bottom: 6px; }
+    .dw-shop__all { margin: 22px 0 0; }
+    .dw-shop__all a { display: inline-block; padding: 9px 22px; border: 1px solid rgba(var(--color-foreground), .4); border-radius: 40px;
+      font-size: 16px; font-weight: 600; letter-spacing: .5px; text-decoration: none; color: rgb(var(--color-foreground)); }
+    .dw-shop__all a:hover { background: rgba(var(--color-foreground), .07); }
+  }
+  @media screen and (min-width: 990px) and (max-width: 1199px) {
+    .dw-shop { grid-template-columns: 200px minmax(0, 1fr); gap: 24px; }
+    .dw-shop__groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>
+{{ 'dw-vintage-menu.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign shop_count = 0
+  for link in section.settings.menu.links
+    if link.levels == 2
+      assign shop_count = shop_count | plus: 1
+    endif
+  endfor
+-%}
+
+<nav class="header__inline-menu">
+  <ul class="list-menu list-menu--inline" role="list">
+    <li>
+      <a id="HeaderMenu-home" href="{{ routes.root_url }}" class="header__menu-item list-menu__item link link--text focus-inset"{% if template.name == 'index' %} aria-current="page"{% endif %}>
+        <span{% if template.name == 'index' %} class="header__active-menu-item"{% endif %}>Home</span>
+      </a>
+    </li>
+
+    {%- if shop_count > 0 -%}
+      <li>
+        <header-menu>
+          <details id="Details-HeaderMenu-shop" class="mega-menu">
+            <summary id="HeaderMenu-shop" class="header__menu-item list-menu__item link focus-inset">
+              <span>Shop</span>
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </summary>
+            <div id="MegaMenu-Content-shop" class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup" tabindex="-1">
+              <div class="dw-shop page-width" data-dw-shop>
+                <div>
+                  <ul class="dw-shop__rail" role="list">
+                    {%- assign i = 0 -%}
+                    {%- for link in section.settings.menu.links -%}
+                      {%- if link.levels == 2 -%}
+                        <li>
+                          <a href="{{ link.url }}" class="dw-shop__tab{% if i == 0 %} is-active{% endif %}" data-dw-tab="{{ i }}">{{ link.title | escape }}</a>
+                        </li>
+                        {%- assign i = i | plus: 1 -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </ul>
+                  <a class="dw-shop__rail-all link" href="{{ routes.all_products_collection_url }}">Shop everything &rarr;</a>
+                  <a class="dw-shop__rail-all dw-shop__rail-bundle link" href="/pages/build-your-bundle">&#10022; Build a bundle &middot; save up to 20%</a>
+                </div>
+                <div>
+                  {%- assign i = 0 -%}
+                  {%- for link in section.settings.menu.links -%}
+                    {%- if link.levels == 2 -%}
+                      <div class="dw-shop__panel" data-dw-panel="{{ i }}"{% if i != 0 %} hidden{% endif %}>
+                        <ul class="dw-shop__groups" role="list">
+                          {%- for childlink in link.links -%}
+                            <li>
+                              <a href="{{ childlink.url }}" class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>{{ childlink.title | escape }}</a>
+                              {%- if childlink.links != blank -%}
+                                <ul class="list-unstyled" role="list">
+                                  {%- for grandchildlink in childlink.links -%}
+                                    <li>
+                                      <a href="{{ grandchildlink.url }}" class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"{% if grandchildlink.current %} aria-current="page"{% endif %}>{{ grandchildlink.title | escape }}</a>
+                                    </li>
+                                  {%- endfor -%}
+                                </ul>
+                              {%- endif -%}
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                        <p class="dw-shop__all"><a href="{{ link.url }}">Explore all {{ link.title | escape }} &rarr;</a></p>
+                      </div>
+                      {%- assign i = i | plus: 1 -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+              </div>
+            </div>
+          </details>
+        </header-menu>
+      </li>
+    {%- endif -%}
+
+    {%- for link in section.settings.menu.links -%}
+      {%- if link.levels == 2 -%}{%- continue -%}{%- endif -%}
+      <li>
+        {%- if link.links != blank -%}
+          <header-menu>
+            <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
+              <summary id="HeaderMenu-{{ link.handle }}" class="header__menu-item list-menu__item link focus-inset">
+                <span{% if link.child_active %} class="header__active-menu-item"{% endif %}>{{- link.title | escape -}}</span>
+                {{- 'icon-caret.svg' | inline_asset_content -}}
+              </summary>
+              <div id="MegaMenu-Content-{{ forloop.index }}" class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup" tabindex="-1">
+                <ul class="mega-menu__list page-width mega-menu__list--condensed" role="list">
+                  {%- for childlink in link.links -%}
+                    <li>
+                      <a href="{{ childlink.url }}" class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>{{ childlink.title | escape }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+            </details>
+          </header-menu>
+        {%- else -%}
+          <a id="HeaderMenu-{{ link.handle }}" href="{{ link.url }}" class="header__menu-item list-menu__item link link--text focus-inset"{% if link.current %} aria-current="page"{% endif %}>
+            <span{% if link.current %} class="header__active-menu-item"{% endif %}>{{- link.title | escape -}}</span>
+          </a>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>
+
+<script>
+  (function () {
+    function setup(root) {
+      if (root.__dwShop) return; root.__dwShop = true;
+      var tabs = root.querySelectorAll('[data-dw-tab]');
+      var panels = root.querySelectorAll('[data-dw-panel]');
+      function show(i) {
+        for (var t = 0; t < tabs.length; t++) tabs[t].classList.toggle('is-active', tabs[t].getAttribute('data-dw-tab') === i);
+        for (var p = 0; p < panels.length; p++) panels[p].hidden = panels[p].getAttribute('data-dw-panel') !== i;
+      }
+      for (var k = 0; k < tabs.length; k++) {
+        (function (tab) {
+          var i = tab.getAttribute('data-dw-tab');
+          tab.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') show(i); });
+          tab.addEventListener('click', function (e) {
+            if (!tab.classList.contains('is-active')) { e.preventDefault(); show(i); }
+          });
+        })(tabs[k]);
+      }
+    }
+    function boot() { var r = document.querySelectorAll('[data-dw-shop]'); for (var i = 0; i < r.length; i++) setup(r[i]); }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+    document.addEventListener('shopify:section:load', boot);
+  })();
+</script>
+
+<script>
+  /* Divine Warrior: sticky header that shrinks smoothly. The page underneath never moves:
+     the space the header gives up is added back as margin while it is shrunk. */
+  (function () {
+    if (window.__dwHeader) return; window.__dwHeader = true;
+    var el, top0 = 0, compact = false, ticking = false;
+    function measure() {
+      el = document.querySelector('.section-header'); if (!el) return;
+      var was = el.classList.contains('dw-compact');
+      el.classList.add('dw-notrans');
+      el.classList.remove('dw-compact');
+      var full = el.offsetHeight;
+      el.classList.add('dw-compact');
+      var small = el.offsetHeight;
+      if (!was) el.classList.remove('dw-compact');
+      el.style.setProperty('--dw-shrink', Math.max(0, full - small) + 'px');
+      top0 = 0; var p = el.previousElementSibling;
+      while (p) { top0 += p.offsetHeight; p = p.previousElementSibling; }
+      void el.offsetHeight;
+      el.classList.remove('dw-notrans');
+    }
+    function closeMenus() {
+      var open = document.querySelectorAll('.header__inline-menu details[open]');
+      for (var i = 0; i < open.length; i++) {
+        open[i].removeAttribute('open');
+        var s = open[i].querySelector('summary'); if (s) s.setAttribute('aria-expanded', 'false');
+      }
+    }
+    function update() {
+      ticking = false; if (!el) return;
+      var y = window.pageYOffset || document.documentElement.scrollTop;
+      if (!compact && y > top0 + 140) { compact = true; closeMenus(); el.classList.add('dw-compact'); }
+      else if (compact && y < top0 + 30) { compact = false; closeMenus(); el.classList.remove('dw-compact'); }
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    var rt; function onResize() { clearTimeout(rt); rt = setTimeout(function () { measure(); update(); }, 150); }
+    function boot() {
+      measure(); update();
+      var logo = el && el.querySelector('.header__heading-logo');
+      if (logo && !logo.complete) logo.addEventListener('load', measure);
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+    window.addEventListener('load', measure);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+  })();
+</script>
