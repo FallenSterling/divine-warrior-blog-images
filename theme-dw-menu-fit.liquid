@@ -168,9 +168,14 @@ html:not(#dw) #main-cart-footer .cart__ctas{margin-top:.6rem!important}
 </style>
 {%- endif -%}
 <style>
-/* Divine Warrior: show the top announcement bar on phones (an old theme rule hid every slider wrapper on mobile), without its arrows */
-@media screen and (max-width:749px){
-  html:not(#dw) .announcement-bar .announcement-bar-slider.slider-buttons{display:flex!important}
-  html:not(#dw) .announcement-bar .announcement-bar-slider .slider-button{display:none!important}
-}
+/* Divine Warrior: show the top announcement bar on phones (an old theme rule hid every slider wrapper on mobile), fitted to the screen and without arrows */
+ @media screen and (max-width:749px){
+   html:not(#dw) .utility-bar .utility-bar__grid{grid-template-columns:minmax(0,1fr)!important}
+   html:not(#dw) .utility-bar .announcement-bar{min-width:0!important;width:100%!important}
+   html:not(#dw) .announcement-bar .announcement-bar-slider.slider-buttons{display:flex!important;width:100%!important;min-width:0!important}
+   html:not(#dw) .announcement-bar .announcement-bar-slider .slider-button{display:none!important}
+   html:not(#dw) .announcement-bar .announcement-bar-slider .slider{width:100%!important}
+   html:not(#dw) .announcement-bar .announcement-bar-slider .slider__slide{width:100%!important;min-width:100%!important}
+   html:not(#dw) .announcement-bar .announcement-bar__message,html:not(#dw) .announcement-bar .announcement-bar__message *{font-size:11px!important;letter-spacing:.08em!important;white-space:nowrap}
+ }
 </style>
