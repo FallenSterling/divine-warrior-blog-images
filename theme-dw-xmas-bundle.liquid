@@ -1,5 +1,5 @@
 <div class="dwxb" id="dwxb-{{ section.id }}">
-  <div class="dwxb__snow" aria-hidden="true">{% for i in (1..18) %}<span>&#10052;</span>{% endfor %}</div>
+  <div class="dwxb__snow" aria-hidden="true">{% for i in (1..18) %}<span>&#10052;&#xFE0E;</span>{% endfor %}</div>
   <div class="dwxb__inner page-width">
     <a class="dwxb__img" href="{{ section.settings.link }}">
       {% if section.settings.image %}{{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '400,600,800,1200', sizes: '(min-width: 750px) 50vw, 100vw', alt: section.settings.heading }}{% endif %}
@@ -13,15 +13,15 @@
   </div>
   <a class="dwxb__build page-width" href="/pages/build-your-bundle">
     <span class="dwxb__build-in">
-      <span class="dwxb__build-fx" aria-hidden="true"><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em><em>&#10052;</em></span>
+      <span class="dwxb__build-fx" aria-hidden="true"><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><i>&#10022;</i><em>&#10052;&#xFE0E;</em><em>&#10052;&#xFE0E;</em><em>&#10052;&#xFE0E;</em><em>&#10052;&#xFE0E;</em><em>&#10052;&#xFE0E;</em><em>&#10052;&#xFE0E;</em><em>&#10052;&#xFE0E;</em><em>&#10052;&#xFE0E;</em><em>&#10052;&#xFE0E;</em><em>&#10052;&#xFE0E;</em><em>&#10052;&#xFE0E;</em><em>&#10052;&#xFE0E;</em></span>
       <span class="dwxb__build-k">&#10022; New for Christmas &middot; Build your own sacred bundle &#10022;</span>
       <span class="dwxb__build-t">Mix any treasures: <b>3 items 10% off</b> &middot; <b>5 items 15% off</b> &middot; <b>8+ items 20% off</b></span>
-      <span class="dwxb__build-b">&#10052; Start your bundle &#10052;</span>
+      <span class="dwxb__build-b">&#10052;&#xFE0E; Start your bundle &#10052;&#xFE0E;</span>
     </span>
   </a>
 </div>
 <style>
-#dwxb-{{ section.id }}{position:relative;overflow:hidden;background:radial-gradient(ellipse at top,#34332e 0%,#22211e 70%);color:#f3ecdc;padding:3.6rem 0;margin:2.4rem 0}
+#dwxb-{{ section.id }}{position:relative;overflow:hidden;background:radial-gradient(ellipse at top,#3d3b37 0%,#33312e 75%);color:#f3ecdc;padding:3.6rem 0;margin:2.4rem 0}
 #dwxb-{{ section.id }} .dwxb__inner{position:relative;z-index:2;display:grid;gap:2.4rem;align-items:center}
 @media(min-width:750px){#dwxb-{{ section.id }} .dwxb__inner{grid-template-columns:1fr 1fr;gap:4.8rem}#dwxb-{{ section.id }}{padding:5.6rem 0}}
 #dwxb-{{ section.id }} .dwxb__img img{width:100%;height:auto;max-height:420px;object-fit:cover;border-radius:14px;display:block;box-shadow:0 10px 40px rgba(0,0,0,.45);border:1px solid rgba(201,169,97,.5)}
@@ -38,7 +38,7 @@
 {% for i in (1..18) %}{% assign l = i | times: 53 | modulo: 100 %}{% assign d = i | times: 7 | modulo: 9 | plus: 7 %}{% assign dl = i | times: 13 | modulo: 11 %}{% assign s = i | modulo: 3 | times: 4 | plus: 9 %}#dwxb-{{ section.id }} .dwxb__snow span:nth-child({{ i }}){left:{{ l }}%;animation-duration:{{ d }}s;animation-delay:-{{ dl }}s;font-size:{{ s }}px}
 {% endfor %}
 #dwxb-{{ section.id }} .dwxb__build{position:relative;z-index:2;display:block;margin-top:3.2rem;text-decoration:none}
-#dwxb-{{ section.id }} .dwxb__build-in{position:relative;overflow:hidden;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.9rem 2rem;padding:2.2rem 2.4rem;border-radius:18px;background:linear-gradient(135deg,#fffaf0 0%,#fbefd2 30%,#f6e2b3 55%,#fdf4de 80%,#f3dca6 100%);color:#3a2b10;text-align:center;box-shadow:0 0 0 2px rgba(216,188,122,.55),0 8px 30px rgba(0,0,0,.3);animation:dwxbRib 3s ease-in-out infinite}
+#dwxb-{{ section.id }} .dwxb__build-in{position:relative;overflow:hidden;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.9rem 2rem;padding:2.2rem 2.4rem;border-radius:18px;background:linear-gradient(135deg,#fffaf0 0%,#fbefd2 30%,#f6e2b3 55%,#fdf4de 80%,#f3dca6 100%);color:#3a2b10;text-align:center;box-shadow:0 0 0 2px rgba(216,188,122,.55),0 8px 30px rgba(20,18,15,.25);animation:dwxbRib 3s ease-in-out infinite}
 #dwxb-{{ section.id }} .dwxb__build-in::before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.85),rgba(255,255,255,0));transform:skewX(-20deg);animation:dwxbSweep 3.6s ease-in-out infinite;z-index:1}
 #dwxb-{{ section.id }} .dwxb__build-fx{position:absolute;inset:0;pointer-events:none;z-index:1}
 #dwxb-{{ section.id }} .dwxb__build-fx i{position:absolute;font-style:normal;color:#fff;text-shadow:0 0 3px #c9a24f,0 0 9px rgba(201,162,79,.95);opacity:0;animation:dwxbTw 2.4s ease-in-out infinite}
