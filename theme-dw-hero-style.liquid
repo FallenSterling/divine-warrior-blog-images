@@ -128,7 +128,7 @@
   document.addEventListener('shopify:section:load',add);
 })();
 </script>
-{%- comment -%}Divine Warrior: animated tarot room in The Tarot Room section{%- endcomment -%}
+{%- comment -%}Divine Warrior: animated tarot room in The Tarot Room section (shuffles the full pack, then lays a three-card reading){%- endcomment -%}
 <style>
 .dwts{position:relative;container-type:inline-size;display:block;width:100%;aspect-ratio:3/2;border-radius:14px;overflow:hidden;background:#33312e url({{ 'dw-tarot-room.jpg' | asset_url }}) center/cover no-repeat;box-shadow:0 10px 34px rgba(51,49,46,.28);text-decoration:none}
 .dwts *{box-sizing:border-box}
@@ -172,35 +172,6 @@
 .dwts__m:nth-child(17){left:74.7%;top:72.1%;animation-delay:-6.0s;animation-duration:10.8s;width:0.38cqw;height:0.50cqw}
 .dwts__m:nth-child(18){left:30.3%;top:56.4%;animation-delay:-6.9s;animation-duration:10.5s;width:0.35cqw;height:0.58cqw}
 .dwts__m{position:absolute;border-radius:50%;background:#ffe9b8;box-shadow:0 0 6px 1px rgba(255,220,150,.8);opacity:0;animation:dwtsMote 9s ease-in-out infinite}
-.dwts__deck{position:absolute;left:50%;top:60%;width:0;height:0;perspective:120cqw}
-.dwts__c{position:absolute;width:12cqw;height:18cqw;left:-6cqw;top:-9cqw;transform-style:preserve-3d;animation-duration:11s;animation-timing-function:cubic-bezier(.45,.05,.3,1);animation-iteration-count:infinite}
-.dwts__c i,.dwts__c b{position:absolute;inset:0;border-radius:.7cqw;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:url({{ 'dw-tarot-back.jpg' | asset_url }}) center/cover;box-shadow:0 .4cqw 1.2cqw rgba(30,20,10,.55);border:.15cqw solid rgba(216,188,122,.8)}
-.dwts__c b{background-image:url({{ 'dw-tarot-star.jpg' | asset_url }});transform:rotateY(180deg);box-shadow:0 0 2cqw rgba(255,214,140,.9),0 .4cqw 1.2cqw rgba(30,20,10,.55)}
-@keyframes dwtsC0{0%{transform:translate3d(0cqw,-0.0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}8%{transform:translate3d(0cqw,-0.0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}18%{transform:translate3d(-9cqw,-0.0cqw,0cqw) rotate(-9deg) rotateY(0deg) scale(1)}28%{transform:translate3d(0cqw,-0.0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}36%{transform:translate3d(-8.1cqw,-0.0cqw,0cqw) rotate(-7.2deg) rotateY(0deg) scale(1)}46%{transform:translate3d(0cqw,-0.0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}54%{transform:translate3d(0cqw,-0.0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}62%{transform:translate3d(0cqw,-10.0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(0.8)}92%{transform:translate3d(0cqw,-10.0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(0.8)}100%{transform:translate3d(0cqw,-0.0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}}
-.dwts__c:nth-child(1){animation-name:dwtsC0;z-index:1}
-@keyframes dwtsC1{0%{transform:translate3d(0cqw,-0.25cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}8%{transform:translate3d(0cqw,-0.25cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}18%{transform:translate3d(-9cqw,-0.55cqw,0cqw) rotate(-9deg) rotateY(0deg) scale(1)}28%{transform:translate3d(0cqw,-0.5cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}36%{transform:translate3d(-8.1cqw,-0.55cqw,0cqw) rotate(-7.2deg) rotateY(0deg) scale(1)}46%{transform:translate3d(0cqw,-0.75cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}54%{transform:translate3d(0cqw,-0.25cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}62%{transform:translate3d(0cqw,-10.25cqw,0cqw) rotate(0deg) rotateY(0deg) scale(0.8)}92%{transform:translate3d(0cqw,-10.25cqw,0cqw) rotate(0deg) rotateY(0deg) scale(0.8)}100%{transform:translate3d(0cqw,-0.25cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}}
-.dwts__c:nth-child(2){animation-name:dwtsC1;z-index:2}
-@keyframes dwtsC2{0%{transform:translate3d(0cqw,-0.5cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}8%{transform:translate3d(0cqw,-0.5cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}18%{transform:translate3d(-9cqw,-1.1cqw,0cqw) rotate(-9deg) rotateY(0deg) scale(1)}28%{transform:translate3d(0cqw,-1.0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}36%{transform:translate3d(-8.1cqw,-1.1cqw,0cqw) rotate(-7.2deg) rotateY(0deg) scale(1)}46%{transform:translate3d(0cqw,-0.0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}54%{transform:translate3d(0cqw,-0.5cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}62%{transform:translate3d(0cqw,-10.5cqw,0cqw) rotate(0deg) rotateY(0deg) scale(0.8)}92%{transform:translate3d(0cqw,-10.5cqw,0cqw) rotate(0deg) rotateY(0deg) scale(0.8)}100%{transform:translate3d(0cqw,-0.5cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}}
-.dwts__c:nth-child(3){animation-name:dwtsC2;z-index:3}
-@keyframes dwtsC3{0%{transform:translate3d(0cqw,-0.75cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}8%{transform:translate3d(0cqw,-0.75cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}18%{transform:translate3d(9cqw,-1.65cqw,0cqw) rotate(9deg) rotateY(0deg) scale(1)}28%{transform:translate3d(0cqw,-0.0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}36%{transform:translate3d(8.1cqw,-1.65cqw,0cqw) rotate(7.2deg) rotateY(0deg) scale(1)}46%{transform:translate3d(0cqw,-0.75cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}54%{transform:translate3d(0cqw,0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}62%{transform:translate3d(-16cqw,4cqw,0cqw) rotate(-5deg) rotateY(0deg) scale(1)}92%{transform:translate3d(-16cqw,4cqw,0cqw) rotate(-5deg) rotateY(0deg) scale(1)}100%{transform:translate3d(0cqw,-0.75cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}}
-.dwts__c:nth-child(4){animation-name:dwtsC3;z-index:4}
-@keyframes dwtsC4{0%{transform:translate3d(0cqw,-1.0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}8%{transform:translate3d(0cqw,-1.0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}18%{transform:translate3d(9cqw,-2.2cqw,0cqw) rotate(9deg) rotateY(0deg) scale(1)}28%{transform:translate3d(0cqw,-0.5cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}36%{transform:translate3d(8.1cqw,-2.2cqw,0cqw) rotate(7.2deg) rotateY(0deg) scale(1)}46%{transform:translate3d(0cqw,-0.0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}54%{transform:translate3d(0cqw,-0.3cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}64%{transform:translate3d(0cqw,5cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}70%{transform:translate3d(0cqw,5cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}76%{transform:translate3d(0cqw,5cqw,4cqw) rotate(0deg) rotateY(180deg) scale(1.12)}90%{transform:translate3d(0cqw,5cqw,4cqw) rotate(0deg) rotateY(180deg) scale(1.12)}96%{transform:translate3d(0cqw,0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}100%{transform:translate3d(0cqw,-1.0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}}
-.dwts__c:nth-child(5){animation-name:dwtsC4;z-index:5}
-@keyframes dwtsC5{0%{transform:translate3d(0cqw,-1.25cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}8%{transform:translate3d(0cqw,-1.25cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}18%{transform:translate3d(9cqw,-2.75cqw,0cqw) rotate(9deg) rotateY(0deg) scale(1)}28%{transform:translate3d(0cqw,-1.0cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}36%{transform:translate3d(8.1cqw,-2.75cqw,0cqw) rotate(7.2deg) rotateY(0deg) scale(1)}46%{transform:translate3d(0cqw,-0.75cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}54%{transform:translate3d(0cqw,-0.6cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}66%{transform:translate3d(16cqw,4cqw,0cqw) rotate(5deg) rotateY(0deg) scale(1)}92%{transform:translate3d(16cqw,4cqw,0cqw) rotate(5deg) rotateY(0deg) scale(1)}100%{transform:translate3d(0cqw,-1.25cqw,0cqw) rotate(0deg) rotateY(0deg) scale(1)}}
-.dwts__c:nth-child(6){animation-name:dwtsC5;z-index:6}
-.dwts__burst{position:absolute;left:50%;top:calc(60% + 5cqw);width:30cqw;height:30cqw;margin:-15cqw 0 0 -15cqw;border-radius:50%;background:radial-gradient(circle,rgba(255,226,160,.55),rgba(255,200,110,0) 65%);opacity:0;animation:dwtsBurst 11s ease-in-out infinite;pointer-events:none}
-.dwts__sp:nth-child(1){--dx:12.0cqw;--dy:0.0cqw;animation-delay:0.00s}
-.dwts__sp:nth-child(2){--dx:9.7cqw;--dy:7.1cqw;animation-delay:0.08s}
-.dwts__sp:nth-child(3){--dx:3.7cqw;--dy:11.4cqw;animation-delay:0.16s}
-.dwts__sp:nth-child(4){--dx:-3.7cqw;--dy:11.4cqw;animation-delay:0.00s}
-.dwts__sp:nth-child(5){--dx:-9.7cqw;--dy:7.1cqw;animation-delay:0.08s}
-.dwts__sp:nth-child(6){--dx:-12.0cqw;--dy:0.0cqw;animation-delay:0.16s}
-.dwts__sp:nth-child(7){--dx:-9.7cqw;--dy:-7.1cqw;animation-delay:0.00s}
-.dwts__sp:nth-child(8){--dx:-3.7cqw;--dy:-11.4cqw;animation-delay:0.08s}
-.dwts__sp:nth-child(9){--dx:3.7cqw;--dy:-11.4cqw;animation-delay:0.16s}
-.dwts__sp:nth-child(10){--dx:9.7cqw;--dy:-7.1cqw;animation-delay:0.00s}
-.dwts__sps{position:absolute;left:50%;top:calc(60% + 5cqw);width:0;height:0}
-.dwts__sp{position:absolute;left:-.8cqw;top:-.8cqw;font-size:1.6cqw;line-height:1;color:#fff8e2;text-shadow:0 0 6px #ffd98a,0 0 12px rgba(255,210,120,.9);opacity:0;animation:dwtsSp 11s ease-out infinite}
 .dwts__cap{position:absolute;left:0;right:0;bottom:0;padding:4cqw 3cqw 2.4cqw;text-align:center;background:linear-gradient(0deg,rgba(51,49,46,.78),rgba(51,49,46,0));color:#f5ecd6;font-size:clamp(12px,1.9cqw,17px);letter-spacing:.22em;text-transform:uppercase}
 .dwts__cap span{color:#e2c27a}
 @keyframes dwtsFlick{0%,100%{opacity:.85;transform:scale(1)}25%{opacity:1;transform:scale(1.08)}50%{opacity:.7;transform:scale(.95)}75%{opacity:.95;transform:scale(1.04)}}
@@ -208,27 +179,36 @@
 @keyframes dwtsSmoke{0%{opacity:0;transform:translateY(0) scaleX(1)}20%{opacity:.8}100%{opacity:0;transform:translateY(-12cqw) scaleX(2.2) rotate(8deg)}}
 @keyframes dwtsTw{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1.1)}}
 @keyframes dwtsMote{0%{opacity:0;transform:translate(0,0)}20%{opacity:.9}80%{opacity:.7}100%{opacity:0;transform:translate(2cqw,-9cqw)}}
-@keyframes dwtsBurst{0%,66%{opacity:0;transform:scale(.4)}74%{opacity:1;transform:scale(1)}88%{opacity:.75;transform:scale(1.05)}96%,100%{opacity:0;transform:scale(.6)}}
-@keyframes dwtsSp{0%,70%{opacity:0;transform:translate(0,0) scale(.3)}74%{opacity:1;transform:translate(calc(var(--dx)*.4),calc(var(--dy)*.4)) scale(1.1)}86%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.5)}100%{opacity:0}}
 @media(prefers-reduced-motion:reduce){.dwts *{animation:none!important}}
 .dwts__fls,.dwts__sts,.dwts__ms{position:absolute;inset:0}
-
-/* The Tarot Room: animated tarot room instead of the still photo */
+.dwtr__deck{position:absolute;left:50%;top:55%;width:0;height:0;z-index:5}
+.dwtr__card{position:absolute;width:11.5cqw;height:19.78cqw;left:-5.75cqw;top:-9.89cqw;will-change:transform}
+.dwtr__in{position:absolute;inset:0}
+.dwtr__back{position:absolute;inset:0;background:#33312e url({{ 'dw-tarot-logo.png' | asset_url }}) center/78% auto no-repeat;border:2px solid #b08d4c;border-radius:.8cqw;box-shadow:inset 0 0 0 3px #33312e,inset 0 0 0 4px rgba(176,141,76,.55),0 .5cqw 1.4cqw rgba(30,20,10,.5)}
+.dwtr__face{display:none;position:absolute;inset:0;background:#fffaf0 center/cover no-repeat;border:2px solid #b08d4c;border-radius:.8cqw;box-shadow:0 0 1.6cqw rgba(255,214,140,.7),0 .5cqw 1.4cqw rgba(30,20,10,.5)}
+.dwtr__card.is-up .dwtr__face{display:block}
+.dwtr__card.is-up .dwtr__back{display:none}
+.dwtr__glow{position:absolute;inset:-2cqw;border-radius:3cqw;background:radial-gradient(closest-side,rgba(255,220,150,.65),rgba(255,220,150,0));z-index:-1;opacity:0;pointer-events:none}
+.dwtr__lab{position:absolute;left:0;top:0;transform:translate(-50%,0);opacity:0;transition:opacity .6s;font-size:clamp(10px,1.5cqw,14px);letter-spacing:.25em;text-transform:uppercase;color:#f3dfae;text-shadow:0 1px 3px rgba(51,49,46,.95),0 0 8px rgba(51,49,46,.7);white-space:nowrap;z-index:30}
+.dwtr__sp{position:absolute;color:#fff8e2;font-size:1.9cqw;line-height:1;text-shadow:0 0 6px #ffd98a,0 0 12px rgba(255,210,120,.9);pointer-events:none;z-index:40}
 [id$="__image_with_text_xTQgWW"] .image-with-text__media.dwts-host{max-height:none!important;height:auto!important;padding:0!important;background:none!important;overflow:visible!important}
 [id$="__image_with_text_xTQgWW"] .image-with-text__media.dwts-host > :not(.dwts){display:none!important}
 </style>
 <script>
 (function(){
-  var H="<a class=\"dwts\" href=\"/pages/free-tarot-reading\" aria-label=\"Enter the Tarot Room for a free tarot reading\"><span class=\"dwts__glowbase\"></span><span class=\"dwts__fls\"><span class=\"dwts__fl\"></span><span class=\"dwts__fl\"></span><span class=\"dwts__fl\"></span><span class=\"dwts__fl\"></span><span class=\"dwts__fl\"></span><span class=\"dwts__fl\"></span><span class=\"dwts__fl\"></span></span><span class=\"dwts__sts\"><span class=\"dwts__st\">&#10022;</span><span class=\"dwts__st\">&#10022;</span><span class=\"dwts__st\">&#10022;</span><span class=\"dwts__st\">&#10022;</span><span class=\"dwts__st\">&#10022;</span><span class=\"dwts__st\">&#10022;</span><span class=\"dwts__st\">&#10022;</span><span class=\"dwts__st\">&#10022;</span><span class=\"dwts__st\">&#10022;</span></span><span class=\"dwts__smoke\"></span><span class=\"dwts__smoke\"></span><span class=\"dwts__smoke\"></span><span class=\"dwts__ms\"><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span></span><span class=\"dwts__burst\"></span><span class=\"dwts__deck\"><span class=\"dwts__c\"><i></i><b></b></span><span class=\"dwts__c\"><i></i><b></b></span><span class=\"dwts__c\"><i></i><b></b></span><span class=\"dwts__c\"><i></i><b></b></span><span class=\"dwts__c\"><i></i><b></b></span><span class=\"dwts__c\"><i></i><b></b></span></span><span class=\"dwts__sps\"><span class=\"dwts__sp\">&#10022;</span><span class=\"dwts__sp\">&#10022;</span><span class=\"dwts__sp\">&#10022;</span><span class=\"dwts__sp\">&#10022;</span><span class=\"dwts__sp\">&#10022;</span><span class=\"dwts__sp\">&#10022;</span><span class=\"dwts__sp\">&#10022;</span><span class=\"dwts__sp\">&#10022;</span><span class=\"dwts__sp\">&#10022;</span><span class=\"dwts__sp\">&#10022;</span></span><span class=\"dwts__cap\">&#10022; Shuffle, draw and <span>discover your card</span> &#10022;</span></a>";
+  var H="<a class=\"dwts\" data-dw-tarot-room href=\"/pages/free-tarot-reading\" aria-label=\"Enter the Tarot Room for a free tarot reading\"><span class=\"dwts__glowbase\"></span><span class=\"dwts__fls\"><span class=\"dwts__fl\"></span><span class=\"dwts__fl\"></span><span class=\"dwts__fl\"></span><span class=\"dwts__fl\"></span><span class=\"dwts__fl\"></span><span class=\"dwts__fl\"></span><span class=\"dwts__fl\"></span></span><span class=\"dwts__sts\"><span class=\"dwts__st\">&#10022;</span><span class=\"dwts__st\">&#10022;</span><span class=\"dwts__st\">&#10022;</span><span class=\"dwts__st\">&#10022;</span><span class=\"dwts__st\">&#10022;</span><span class=\"dwts__st\">&#10022;</span><span class=\"dwts__st\">&#10022;</span><span class=\"dwts__st\">&#10022;</span><span class=\"dwts__st\">&#10022;</span></span><span class=\"dwts__smoke\"></span><span class=\"dwts__smoke\"></span><span class=\"dwts__smoke\"></span><span class=\"dwts__ms\"><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span><span class=\"dwts__m\"></span></span><span class=\"dwts__cap\">&#10022; Shuffle, draw and <span>discover your cards</span> &#10022;</span></a>";
   function go(){
     var m=document.querySelector('[id$="__image_with_text_xTQgWW"] .image-with-text__media');
     if(!m||m.classList.contains('dwts-host'))return;
     m.classList.add('dwts-host');m.insertAdjacentHTML('afterbegin',H);
+    var st=m.querySelector('[data-dw-tarot-room]');
+    if(window.DW_TAROT_ROOM_INIT)window.DW_TAROT_ROOM_INIT(st);
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
   document.addEventListener('shopify:section:load',go);
 })();
 </script>
+<script src="{{ 'dw-tarot-room.js' | asset_url }}" defer></script>
 {% schema %}
 { "name": "Christmas hero styling", "settings": [] }
 {% endschema %}
