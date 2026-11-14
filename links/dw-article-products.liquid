@@ -13,8 +13,9 @@
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
 
-{%- capture dw_mapped -%}{%- render 'dw-a2c', h: article.handle -%}{%- endcapture -%}
-{%- capture dw_phandles -%}{%- render 'dw-a2p', h: article.handle -%}{%- endcapture -%}
+{%- assign dw_ah = article.handle | split: '/' | last -%}
+{%- capture dw_mapped -%}{%- render 'dw-a2c', h: dw_ah -%}{%- endcapture -%}
+{%- capture dw_phandles -%}{%- render 'dw-a2p', h: dw_ah -%}{%- endcapture -%}
 {%- liquid
   assign dw_mapped = dw_mapped | strip
   assign dw_phandles = dw_phandles | strip | split: ','
