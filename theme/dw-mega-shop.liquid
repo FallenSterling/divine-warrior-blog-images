@@ -202,3 +202,26 @@
     .dwm__tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
 </style>
+<style>
+  @media screen and (min-width: 990px) {
+    /* Plain cream menu panels, clearer text */
+    .header__inline-menu .mega-menu__content,
+    .header__inline-menu .mega-menu__content:not(#MegaMenu-Content-shop) {
+      background-color: #faf6ee !important; background-image: none !important;
+      --dw-ink: #33312e; border-top: 2px solid #c9a24a;
+    }
+    .dwm__rail { border-right: 1px solid rgba(201,162,74,.6); }
+    .dwm__tab { font-size: 18px; font-weight: 600; color: #33312e; }
+    .dwm__tab.is-active { background: #efe2c4; color: #6b4a12; }
+    .dwm__h { font-size: 28px; color: #33312e; }
+    .dwm__all { font-size: 16px; font-weight: 600; color: #7a5719; }
+    .dwm__tt { font-size: 16.5px; font-weight: 700; color: #33312e; }
+    .dwm__sub a { font-size: 15px; font-weight: 500; color: #33312e; padding: 3px 0; }
+    .dwm__sub a:hover { color: #7a5719; }
+    .dwm__likeh { color: #7a5719; font-weight: 600; }
+    .dwm__pn { font-size: 14px; font-weight: 500; color: #33312e; }
+    .dwm__pp { font-weight: 600; color: #7a5719; }
+    .dwm__gg { color: #4a443d; }
+    .dwm__img { border-color: #dcc79a; }
+  }
+</style>
