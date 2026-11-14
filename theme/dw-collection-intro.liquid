@@ -1,0 +1,16 @@
+{%- comment -%}Short tagline under the collection title. Full intro, guide and FAQ sit below the products.{%- endcomment -%}
+{%- capture dw_line -%}{%- render 'dw-coll-override', h: collection.handle, part: 'tagline' -%}{%- endcapture -%}
+{%- if dw_line == blank -%}{%- capture dw_line -%}{%- render 'dw-coll-tagline', h: collection.handle -%}{%- endcapture -%}{%- endif -%}
+{%- assign dw_line = dw_line | strip -%}
+{%- if dw_line != blank -%}
+<div class="dw-intro page-width"><p class="dw-intro__text">{{ dw_line }}</p></div>
+<style>
+  .dw-intro { max-width: 720px; margin: -8px auto 12px; text-align: center; }
+  .dw-intro .dw-intro__text { font-size: 1.4rem; line-height: 1.55; color: rgba(58,53,48,.7); margin: 0; }
+  @media (max-width: 749px) { .dw-intro { padding: 0 20px; } .dw-intro .dw-intro__text { font-size: 1.25rem; } }
+</style>
+{%- endif -%}
+{% render 'dw-subcats' %}
+{% schema %}
+{ "name": "Collection intro", "settings": [] }
+{% endschema %}

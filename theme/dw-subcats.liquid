@@ -1,0 +1,91 @@
+{%- comment -%}
+  Sub-category pills on collection pages, built from the main menu (main-menu-2026).
+  Top level or group collection: shows its sub-categories. Sub-category: shows its siblings, current one highlighted.
+{%- endcomment -%}
+{%- liquid
+  assign menu = linklists['main-menu-2026']
+  assign h = collection.handle
+  assign parent = nil
+  for l1 in menu.links
+    if l1.type == 'collection_link' and l1.object.handle == h and l1.links != blank
+      assign parent = l1
+      break
+    endif
+  endfor
+  if parent == nil
+    for l1 in menu.links
+      for l2 in l1.links
+        if l2.type == 'collection_link' and l2.object.handle == h and l2.links != blank
+          assign parent = l2
+          break
+        endif
+      endfor
+      if parent != nil
+        break
+      endif
+    endfor
+  endif
+  if parent == nil
+    for l1 in menu.links
+      for l2 in l1.links
+        for l3 in l2.links
+          if l3.type == 'collection_link' and l3.object.handle == h
+            assign parent = l2
+            break
+          endif
+        endfor
+        if parent != nil
+          break
+        endif
+      endfor
+      if parent != nil
+        break
+      endif
+    endfor
+  endif
+-%}
+{%- if parent != nil and parent.links.size > 1 -%}
+<nav class="dwsc page-width" aria-label="Shop by type">
+  <ul class="dwsc__row" role="list">
+    <li><a class="dwsc__pill{% if parent.object.handle == h %} is-on{% endif %}" href="{{ parent.url }}"{% if parent.object.handle == h %} aria-current="page"{% endif %}><span class="dwsc__star">&#10022;</span>All</a></li>
+    {%- for c in parent.links -%}
+      {%- liquid
+        assign on = false
+        if c.type == 'collection_link' and c.object.handle == h and parent.object.handle != h
+          assign on = true
+        endif
+        assign img = nil
+        if c.type == 'collection_link'
+          assign img = c.object.featured_image
+          if img == blank
+            assign img = c.object.products.first.featured_image
+          endif
+        endif
+      -%}
+      <li><a class="dwsc__pill{% if on %} is-on{% endif %}" href="{{ c.url }}"{% if on %} aria-current="page"{% endif %}>
+        {%- if img != blank -%}{{ img | image_url: width: 64, height: 64, crop: 'center' | image_tag: width: 26, height: 26, loading: 'lazy', decoding: 'async', alt: '', class: 'dwsc__img' }}{%- endif -%}
+        {{ c.title | escape }}</a></li>
+    {%- endfor -%}
+  </ul>
+</nav>
+<style>
+  .dwsc { margin: 4px auto 14px; }
+  .dwsc__row { list-style: none; margin: 0; padding: 2px 0 6px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .dwsc__pill { display: inline-flex; align-items: center; gap: 7px; padding: 5px 14px 5px 6px; border: 1px solid #d9c08a; border-radius: 40px; background: #fffdf8; color: #33312e; text-decoration: none; font-size: 1.4rem; line-height: 1.2; white-space: nowrap; transition: border-color .2s, background .2s; }
+  .dwsc__pill:hover { border-color: #b8923f; background: #fff; }
+  .dwsc__pill.is-on { background: #33312e; border-color: #33312e; color: #f6f1e7; }
+  .dwsc__img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; display: block; }
+  .dwsc__star { width: 26px; height: 26px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: #efe4cc; color: #8a6a2a; font-size: 12px; }
+  .dwsc__pill.is-on .dwsc__star { background: #4a4640; color: #e6c97a; }
+  @media (max-width: 749px) {
+    .dwsc { padding: 0; }
+    .dwsc__row { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 2px 16px 8px; }
+    .dwsc__row::-webkit-scrollbar { display: none; }
+    .dwsc__pill { font-size: 1.3rem; padding: 4px 12px 4px 5px; }
+    .dwsc__img, .dwsc__star { width: 24px; height: 24px; }
+  }
+</style>
+<script>
+  (function(){var r=document.querySelector('.dwsc__row'),a=r&&r.querySelector('.is-on');if(a&&r.scrollWidth>r.clientWidth){r.scrollLeft=a.offsetLeft-24;}})();
+</script>
+{%- endif -%}
