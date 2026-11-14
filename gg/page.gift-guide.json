@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "dw-gift-guide", "settings": {} }
+  },
+  "order": ["main"]
+}

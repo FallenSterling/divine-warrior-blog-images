@@ -1,0 +1,132 @@
+{%- comment -%}
+  Divine Warrior mystical Christmas gift guide.
+  Content comes from the page metafield custom.gift_guide (json):
+  { kicker, title, intro, groups: [ { title, blurb, products: [handles] } ], faq: [ { q, a } ] }
+{%- endcomment -%}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'quick-add.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+
+{%- assign g = page.metafields.custom.gift_guide.value -%}
+<div class="dwgg">
+  <header class="dwgg__hero">
+    <div class="dwgg__sky" aria-hidden="true">
+      {%- for i in (1..18) -%}<i style="--x:{{ i | times: 37 | modulo: 100 }}%;--d:{{ i | times: 7 | modulo: 11 | plus: 7 }}s;--t:{{ i | times: 13 | modulo: 9 }}s">{% cycle '&#10052;&#xFE0E;', '&#10022;', '&#10052;&#xFE0E;', '&#10023;' %}</i>{%- endfor -%}
+    </div>
+    <div class="dwgg__hero-in page-width">
+      <p class="dwgg__kicker">&#10022; {{ g.kicker | default: 'A Divine Warrior gift guide' }} &#10022;</p>
+      <h1 class="dwgg__title">{{ g.title | default: page.title }}</h1>
+      <div class="dwgg__rule" aria-hidden="true"><span>&#10052;&#xFE0E;</span></div>
+      {%- if g.intro != blank -%}<p class="dwgg__intro">{{ g.intro }}</p>{%- endif -%}
+      <p class="dwgg__by">Chosen by <a href="/pages/rowan-hart-author-of-folk-magic-divination-british-folklore">Rowan Hart</a> &middot; Free UK delivery from &pound;24.99</p>
+      {%- if g.groups.size > 1 -%}
+      <nav class="dwgg__jump" aria-label="Gift sections">
+        {%- for grp in g.groups -%}<a href="#dwgg-{{ forloop.index }}">{{ grp.title }}</a>{%- endfor -%}
+      </nav>
+      {%- endif -%}
+    </div>
+  </header>
+
+  {%- for grp in g.groups -%}
+  <section class="dwgg__group page-width" id="dwgg-{{ forloop.index }}">
+    <p class="dwgg__num" aria-hidden="true">{% cycle '&#8544;', '&#8545;', '&#8546;', '&#8547;', '&#8548;', '&#8549;' %}</p>
+    <h2 class="dwgg__gtitle">{{ grp.title }}</h2>
+    {%- if grp.blurb != blank -%}<p class="dwgg__blurb">{{ grp.blurb }}</p>{%- endif -%}
+    <ul class="grid product-grid contains-card contains-card--product grid--4-col-desktop grid--2-col-tablet-down dwgg__grid" role="list">
+      {%- for h in grp.products -%}
+        {%- assign p = all_products[h] -%}
+        {%- if p.available -%}
+        <li class="grid__item">
+          {% render 'card-product', card_product: p, media_aspect_ratio: 'square', show_secondary_image: false, show_vendor: false, show_rating: true, quick_add: 'standard', section_id: section.id, skip_styles: true %}
+        </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </section>
+  {%- endfor -%}
+
+  <section class="dwgg__cta page-width">
+    <div class="dwgg__card dwgg__card--dark">
+      <p class="dwgg__ck">&#10022; Make it a bundle &#10022;</p>
+      <h2>Choose your own gift bundle</h2>
+      <p>Pick any items you like and the more you choose, the more you save, up to 20% off.</p>
+      <a class="dwgg__btn dwgg__btn--gold" href="/pages/build-your-bundle">Build a bundle</a>
+    </div>
+    <div class="dwgg__card">
+      <p class="dwgg__ck">&#10022; Still unsure? &#10022;</p>
+      <h2>Ask the Mystical Gift Finder</h2>
+      <p>Answer a few quick questions about who you are buying for and we will suggest gifts to suit them.</p>
+      <a class="dwgg__btn" href="/pages/mystical-gift-finder-uk">Find a gift</a>
+    </div>
+  </section>
+
+  {%- if g.faq.size > 0 -%}
+  <section class="dwgg__faq page-width">
+    <h2 class="dwgg__gtitle">Questions about Christmas gifts</h2>
+    {%- for x in g.faq -%}
+      <details class="dwgg__q"><summary><h3>{{ x.q }}</h3></summary><p>{{ x.a }}</p></details>
+    {%- endfor -%}
+  </section>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{%- for x in g.faq -%}{"@type":"Question","name":{{ x.q | strip_html | json }},"acceptedAnswer":{"@type":"Answer","text":{{ x.a | strip_html | json }}}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]}</script>
+  {%- endif -%}
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":{{ g.title | default: page.title | json }},"description":{{ g.intro | strip_html | json }},"url":{{ request.origin | append: page.url | json }},"inLanguage":"en-GB","isPartOf":{"@type":"WebSite","name":{{ shop.name | json }},"url":{{ request.origin | json }}}}</script>
+</div>
+
+<style>
+  .dwgg { background: #f6f1e7; color: #33312e; }
+  .dwgg__hero { position: relative; overflow: hidden; background: radial-gradient(ellipse at top, #45423c 0%, #33312e 70%); color: #f6f1e7; text-align: center; padding: 64px 0 46px; border-bottom: 1px solid rgba(220,189,108,.5); }
+  .dwgg__sky i { position: absolute; top: -20px; left: var(--x); font-style: normal; color: rgba(246,241,231,.75); font-size: 13px; animation: dwgg-fall var(--d) linear infinite; animation-delay: calc(var(--t) * -1); }
+  .dwgg__sky i:nth-child(even) { color: #e6c97a; font-size: 11px; }
+  @keyframes dwgg-fall { 0% { transform: translateY(0) rotate(0); opacity: 0; } 10% { opacity: 1; } 100% { transform: translateY(520px) rotate(200deg); opacity: 0; } }
+  .dwgg__hero-in { position: relative; max-width: 820px; }
+  .dwgg__kicker { margin: 0 0 10px; font-size: 1.25rem; letter-spacing: .28em; text-transform: uppercase; color: #e6c97a; }
+  .dwgg__title { margin: 0; font-size: clamp(3rem, 6vw, 5rem); line-height: 1.12; color: #fbf6ea; font-style: italic; }
+  .dwgg__rule { display: flex; align-items: center; gap: 14px; justify-content: center; margin: 18px auto; color: #e6c97a; max-width: 260px; }
+  .dwgg__rule::before, .dwgg__rule::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #c8ad78, transparent); }
+  .dwgg__intro { font-size: 1.75rem; line-height: 1.75; margin: 0 auto 14px; color: #efe8da; max-width: 700px; }
+  .dwgg__by { font-size: 1.3rem; color: #cfc4ad; margin: 0 0 22px; }
+  .dwgg__by a { color: #e6c97a; }
+  .dwgg__jump { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .dwgg__jump a { padding: 7px 14px; border: 1px solid rgba(230,201,122,.6); border-radius: 40px; color: #f6f1e7; text-decoration: none; font-size: 1.3rem; }
+  .dwgg__jump a:hover { background: rgba(230,201,122,.15); }
+  .dwgg__group { padding: 52px 0 10px; text-align: center; }
+  .dwgg__num { margin: 0; font-size: 2rem; color: #a0824a; }
+  .dwgg__gtitle { margin: 4px 0 10px; font-size: clamp(2.4rem, 4vw, 3.2rem); }
+  .dwgg__blurb { max-width: 680px; margin: 0 auto 26px; font-size: 1.6rem; line-height: 1.7; color: #4a443d; }
+  .dwgg__grid { text-align: left; margin-bottom: 0; }
+  .dwgg .quick-add__submit { padding: 4px 8px !important; min-height: 34px !important; font-size: 1.3rem !important; border-radius: 20px !important; background: #e9dcbc !important; color: #33312e !important; border: 0 !important; }
+  .dwgg__cta { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding: 56px 0 10px; }
+  .dwgg__card { border: 1px solid rgba(160,130,70,.4); border-radius: 18px; padding: 30px 26px; text-align: center; background: #fffaf1; }
+  .dwgg__card h2 { margin: 6px 0 8px; font-size: 2.4rem; }
+  .dwgg__card p { font-size: 1.5rem; line-height: 1.6; margin: 0 0 16px; }
+  .dwgg__card--dark { background: radial-gradient(ellipse at top, #45423c 0%, #33312e 75%); color: #f6f1e7; border-color: rgba(220,189,108,.6); }
+  .dwgg__card--dark h2 { color: #fbf6ea; }
+  .dwgg__ck { font-size: 1.2rem !important; letter-spacing: .22em; text-transform: uppercase; color: #a0824a; margin: 0 !important; }
+  .dwgg__card--dark .dwgg__ck { color: #e6c97a; }
+  .dwgg__btn { display: inline-block; padding: 11px 26px; border-radius: 40px; border: 1px solid #33312e; color: #33312e; text-decoration: none; font-size: 1.4rem; letter-spacing: .1em; text-transform: uppercase; }
+  .dwgg__btn--gold { background: linear-gradient(180deg, #dcbd6c, #b8923f); border: 0; color: #33312e; font-weight: 600; }
+  .dwgg__faq { max-width: 860px; padding: 56px 0 70px; }
+  .dwgg__faq .dwgg__gtitle { text-align: center; margin-bottom: 18px; }
+  .dwgg__q { border-bottom: 1px solid rgba(160,130,70,.3); }
+  .dwgg__q summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .dwgg__q summary::-webkit-details-marker { display: none; }
+  .dwgg__q summary::after { content: '+'; font-size: 2.2rem; color: #a0824a; }
+  .dwgg__q[open] summary::after { content: '\2013'; }
+  .dwgg__q h3 { font-size: 1.7rem; margin: 14px 0; font-weight: 400; }
+  .dwgg__q p { font-size: 1.5rem; line-height: 1.7; margin: 0 0 16px; }
+  @media (max-width: 749px) {
+    .dwgg__hero { padding: 44px 0 34px; }
+    .dwgg__intro { font-size: 1.5rem; }
+    .dwgg__jump a { font-size: 1.15rem; padding: 6px 11px; }
+    .dwgg__group { padding-top: 38px; }
+    .dwgg__blurb { font-size: 1.45rem; padding: 0 6px; }
+    .dwgg__cta { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { .dwgg__sky { display: none; } }
+</style>
+
+{% schema %}
+{ "name": "Mystical gift guide", "settings": [] }
+{% endschema %}
