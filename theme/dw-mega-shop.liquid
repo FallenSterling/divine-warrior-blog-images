@@ -101,8 +101,8 @@
             <div class="dwm__like">
               <p class="dwm__likeh">&#10022; You might like</p>
               <ul class="dwm__prods" role="list">
-                {%- for p in link.object.products limit: 12 -%}
-                  {%- if p.available and p.featured_image != blank and shown < 4 -%}
+                {%- for p in link.object.products limit: 30 -%}
+                  {%- if p.available and p.featured_image != blank and p.price >= 800 and shown < 4 -%}
                     <li>
                       <a class="dwm__prod" href="{{ p.url }}">
                         {{ p.featured_image | image_url: width: 120, height: 120, crop: 'center' | image_tag: width: 56, height: 56, loading: 'lazy', decoding: 'async', alt: '', class: 'dwm__pimg' }}
@@ -142,7 +142,7 @@
 
 <style>
   @media screen and (min-width: 990px) {
-    #MegaMenu-Content-shop { background: #f8f3e9; border-top: 2px solid #c9a24a; }
+    #MegaMenu-Content-shop { border-top: 2px solid #c9a24a; max-height: calc(100vh - 150px); padding-top: 22px; padding-bottom: 22px; }
     .dwm { display: grid; grid-template-columns: 250px minmax(0, 1fr) 230px; gap: 30px; align-items: start; }
     .dwm__rail { list-style: none; margin: 0; padding: 0 22px 0 0; border-right: 1px solid rgba(160,130,70,.28); }
     .dwm__tab { display: flex; align-items: center; gap: 12px; padding: 7px 10px; margin-bottom: 3px; border-radius: 40px; text-decoration: none; color: #33312e; font-size: 17px; line-height: 1.2; }
