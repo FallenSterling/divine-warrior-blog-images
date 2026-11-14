@@ -1,0 +1,147 @@
+{%- comment -%}
+  Divine Warrior: "Shop this guide" product row for blog posts.
+  Picks products in this order:
+  1. Products chosen on the post (metafield custom.shop_products)
+  2. The collection mapped to this post in snippets/dw-a2c
+  3. A collection matched from the post's title, handle and tags
+  4. The fallback collection set in the section settings
+{%- endcomment -%}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'quick-add.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+
+{%- capture dw_mapped -%}{%- render 'dw-a2c', h: article.handle -%}{%- endcapture -%}
+{%- liquid
+  assign dw_mapped = dw_mapped | strip
+  assign picked = article.metafields.custom.shop_products.value
+  assign dw_col = nil
+  assign tag_str = article.tags | join: ' '
+  assign hay = article.title | append: ' ' | append: article.handle | append: ' ' | append: tag_str | downcase | replace: '-', ' '
+
+  if picked == blank and dw_mapped != blank
+    assign dw_col = collections[dw_mapped]
+    if dw_col.products_count == 0
+      assign dw_col = nil
+    endif
+  endif
+
+  if picked == blank and dw_col == nil
+    assign rules = section.settings.rules | newline_to_br | split: '<br />'
+    for rule in rules
+      assign parts = rule | strip | split: '=>'
+      if parts.size == 2
+        assign words = parts[0] | split: ','
+        for w in words
+          assign w2 = w | strip | downcase
+          if w2 != blank and hay contains w2
+            assign handle = parts[1] | strip
+            assign dw_col = collections[handle]
+            break
+          endif
+        endfor
+      endif
+      if dw_col and dw_col.products_count > 0
+        break
+      else
+        assign dw_col = nil
+      endif
+    endfor
+    if dw_col == nil
+      assign dw_col = section.settings.fallback
+    endif
+  endif
+-%}
+
+{%- if picked != blank or dw_col != blank -%}
+<div class="dw-ap color-{{ section.settings.color_scheme }} gradient" id="shop-this-guide">
+  <div class="page-width dw-ap__inner">
+    <div class="dw-ap__head">
+      <p class="dw-ap__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h2 class="dw-ap__title h2">{{ section.settings.heading | escape }}</h2>
+    </div>
+    <ul class="grid product-grid contains-card contains-card--product grid--4-col-desktop grid--2-col-tablet-down dw-ap__grid" role="list">
+      {%- assign shown = 0 -%}
+      {%- if picked != blank -%}
+        {%- for p in picked -%}
+          {%- if p.available and shown < 4 -%}
+            {%- assign shown = shown | plus: 1 -%}
+            <li class="grid__item">
+              {% render 'card-product', card_product: p, media_aspect_ratio: 'square', show_secondary_image: false, show_vendor: false, show_rating: false, quick_add: 'standard', section_id: section.id, skip_styles: true %}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for p in dw_col.products limit: 24 -%}
+          {%- if p.available and shown < 4 -%}
+            {%- assign shown = shown | plus: 1 -%}
+            <li class="grid__item">
+              {% render 'card-product', card_product: p, media_aspect_ratio: 'square', show_secondary_image: false, show_vendor: false, show_rating: false, quick_add: 'standard', section_id: section.id, skip_styles: true %}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </ul>
+    {%- if dw_col != blank -%}
+      <div class="dw-ap__more">
+        <a class="button button--secondary" href="{{ dw_col.url }}">{{ section.settings.button_label | escape }} {{ dw_col.title | escape }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+{%- if section.settings.show_pill -%}
+<a class="dw-ap-pill" href="#shop-this-guide" aria-label="{{ section.settings.eyebrow | escape }}" hidden>
+  <span aria-hidden="true">&#10022;</span> {{ section.settings.eyebrow | escape }}
+</a>
+<script>
+  (function () {
+    var pill = document.querySelector('.dw-ap-pill'), target = document.getElementById('shop-this-guide');
+    if (!pill || !target) return;
+    function check() {
+      var doc = document.documentElement, scrolled = (window.scrollY || doc.scrollTop) / Math.max(1, doc.scrollHeight - window.innerHeight);
+      var tTop = target.getBoundingClientRect().top;
+      pill.hidden = !(scrolled > 0.25 && tTop > window.innerHeight);
+    }
+    window.addEventListener('scroll', check, { passive: true });
+    check();
+  })();
+</script>
+{%- endif -%}
+{%- endif -%}
+
+<style>
+  .dw-ap { padding: 36px 0 44px; border-top: 1px solid rgba(var(--color-foreground), .08); }
+  .dw-ap__head { text-align: center; margin-bottom: 22px; }
+  .dw-ap__eyebrow { margin: 0 0 4px; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; opacity: .75; }
+  .dw-ap__title { margin: 0; }
+  .dw-ap__grid { margin-bottom: 0; }
+  .dw-ap__more { text-align: center; margin-top: 24px; }
+  .dw-ap-pill { position: fixed; z-index: 20; left: 50%; bottom: 18px; transform: translateX(-50%); padding: 10px 18px; border-radius: 40px; background: rgb(var(--color-button, 183,172,162)); color: rgb(var(--color-button-text, 38,38,38)); box-shadow: 0 6px 18px rgba(0,0,0,.18); text-decoration: none; font-size: 15px; letter-spacing: .04em; white-space: nowrap; }
+  .dw-ap-pill[hidden] { display: none; }
+  .dw-ap .quick-add__submit { padding: 4px 8px !important; min-height: 36px !important; font-size: 14px !important; }
+</style>
+
+{% schema %}
+{
+  "name": "Shop this guide",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Shop this guide" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Bring this practice home" },
+    { "type": "text", "id": "button_label", "label": "Button text (collection name is added)", "default": "Shop" },
+    {
+      "type": "textarea",
+      "id": "rules",
+      "label": "Keyword rules",
+      "info": "One rule per line: words, separated by commas => collection handle. The first match wins.",
+      "default": "love, romance, attract => ritual-spell-candles\ncrystal ball, scrying => crystal-balls-on-stand\ncandle, wax, flame, ceromancy, smoke => ritual-spell-candles\ntarot, arcana => tarot-cards-uk\noracle => oracle-cards-collection\nrune => rune-stones-uk\npendulum => crystal-magic-pendulums\nsinging bowl, sound healing, vagus => tibetan-singing-bowls\nsmudge, sage => smudge-sticks\nspirit board, ouija => spirit-boards\naltar, ritual water => sacred-altar-cleansing\nchakra => chakra-crystal-candles\nincense => incense-burners-incense\nessential oil, aromatherapy => aromatherapy\ncrystal, quartz, amethyst, tourmaline, selenite, gemstone => crystal-healing-gifts\nyule, samhain, halloween, folk, spell, witch => ritual-spell-candles"
+    },
+    { "type": "collection", "id": "fallback", "label": "Fallback collection" },
+    { "type": "checkbox", "id": "show_pill", "label": "Show floating 'Shop this guide' button while reading", "default": true },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-2" }
+  ],
+  "presets": [{ "name": "Shop this guide" }]
+}
+{% endschema %}

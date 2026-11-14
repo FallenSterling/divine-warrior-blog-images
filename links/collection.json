@@ -1,0 +1,105 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "custom_css": [
+        ".collection__title,.collection-hero__title,.banner__heading,h1.collection__title,h1 {font-size: 24px !important; padding-top: 10px !important; padding-bottom: 10px !important; text-align: center !important;}"
+      ],
+      "settings": {
+        "show_collection_description": false,
+        "show_collection_image": false,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "dw_intro": {
+      "type": "dw-collection-intro",
+      "settings": {}
+    },
+    "christmas_selector": {
+      "type": "dw-christmas-selector",
+      "settings": {}
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "custom_css": [
+        ".quick-add__submit,.product-form__submit {padding: 4px 8px !important; height: 32px !important; min-height: unset !important; line-height: 1 !important; font-size: 14px !important; border-radius: 20px !important; background-color: #e9dcbc !important; border: none !important; color: #262626 !important;}",
+        "@media(max-width:749px){.quick-add__submit,.product-form__submit{font-size:11px!important;letter-spacing:1px!important}}"
+      ],
+      "settings": {
+        "products_per_page": 36,
+        "columns_desktop": 5,
+        "columns_mobile": "2",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
+    "dw_reads": {
+      "type": "dw-collection-reads",
+      "settings": {}
+    },
+    "dw_guide": {
+      "type": "dw-collection-guide",
+      "settings": {}
+    },
+    "rich_text_GjUKzF": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_B8dCGP": {
+          "type": "heading",
+          "settings": {
+            "heading": "Tarot Cards UK | Tarot Decks for Beginners & Experienced Readers",
+            "heading_size": "h1"
+          }
+        },
+        "text_qftNmX": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Shop tarot cards UK at Divine Warrior, a trusted UK spiritual shop with a hand-picked collection of tarot decks for every level of reader and every style of practice.</p><p>Our range includes the iconic Rider Waite Original 1909 deck, gold foil tarot cards with luxurious metallic finishes, rose gold moon phase decks, intricate blue foil mandala designs, and Goddess and Requiem Arcana decks for those drawn to deeper symbolism. Every tarot deck contains the full 78 cards — all major and minor arcana — and comes with a detailed guidebook so beginners can start reading with confidence from day one.</p><p>Looking for a tarot gift set UK? Our beautifully boxed sets arrive ready to give, from simple deck and guidebook combinations to complete ritual kits. Whether you use tarot for daily guidance, meditation, manifestation, or self-discovery, shop our full range of tarot decks UK and find the deck that speaks to you. Fast delivery across the United Kingdom.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_B8dCGP",
+        "text_qftNmX"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "dw_intro",
+    "christmas_selector",
+    "product-grid",
+    "dw_reads",
+    "dw_guide",
+    "rich_text_GjUKzF"
+  ]
+}

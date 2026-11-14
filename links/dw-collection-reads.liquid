@@ -1,0 +1,26 @@
+{%- capture dw_reads -%}{%- render 'dw-c2a', h: collection.handle -%}{%- endcapture -%}
+{%- assign dw_reads = dw_reads | strip -%}
+{%- if dw_reads != blank -%}
+<section class="dw-reads page-width" aria-labelledby="dw-reads-{{ section.id }}">
+  <p class="dw-reads__eyebrow">&#10022; From the Divine Warrior guides &#10022;</p>
+  <h2 id="dw-reads-{{ section.id }}" class="dw-reads__title">Learn before you choose</h2>
+  <ul class="dw-reads__list" role="list">{{ dw_reads }}</ul>
+</section>
+<style>
+  .dw-reads { max-width: 860px; margin: 6px auto 20px; padding: 26px 22px 6px; text-align: center; }
+  .dw-reads__eyebrow { margin: 0 0 4px; font-size: 1.2rem; letter-spacing: .18em; text-transform: uppercase; color: #8a6a2c; }
+  .dw-reads__title { margin: 0 0 16px; font-size: 2.2rem; }
+  .dw-reads__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .dw-reads__item a { display: block; padding: 13px 18px; border: 1px solid rgba(160,130,70,.35); border-radius: 12px; background: rgba(233,220,188,.25); color: #3a3530; text-decoration: none; font-size: 1.5rem; line-height: 1.45; }
+  .dw-reads__item a:hover { background: rgba(233,220,188,.5); }
+  .dw-reads__item a::after { content: ' \2192'; color: #a0824a; }
+  @media (max-width: 749px) { .dw-reads__title { font-size: 1.9rem; } .dw-reads__item a { font-size: 1.4rem; padding: 11px 14px; } }
+</style>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Related guides",
+  "settings": []
+}
+{% endschema %}
