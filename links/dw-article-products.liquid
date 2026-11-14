@@ -2,7 +2,8 @@
   Divine Warrior: "Shop this guide" product row for blog posts.
   Picks products in this order:
   1. Products chosen on the post (metafield custom.shop_products)
-  2. The collection mapped to this post in snippets/dw-a2c
+  2. Products chosen for this post in snippets/dw-a2p, then
+     the collection mapped to this post in snippets/dw-a2c
   3. A collection matched from the post's title, handle and tags
   4. The fallback collection set in the section settings
 {%- endcomment -%}
@@ -13,8 +14,10 @@
 <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
 
 {%- capture dw_mapped -%}{%- render 'dw-a2c', h: article.handle -%}{%- endcapture -%}
+{%- capture dw_phandles -%}{%- render 'dw-a2p', h: article.handle -%}{%- endcapture -%}
 {%- liquid
   assign dw_mapped = dw_mapped | strip
+  assign dw_phandles = dw_phandles | strip | split: ','
   assign picked = article.metafields.custom.shop_products.value
   assign dw_col = nil
   assign tag_str = article.tags | join: ' '
@@ -73,6 +76,15 @@
           {%- endif -%}
         {%- endfor -%}
       {%- else -%}
+        {%- for ph in dw_phandles -%}
+          {%- assign p = all_products[ph] -%}
+          {%- if p.available and shown < 4 -%}
+            {%- assign shown = shown | plus: 1 -%}
+            <li class="grid__item">
+              {% render 'card-product', card_product: p, media_aspect_ratio: 'square', show_secondary_image: false, show_vendor: false, show_rating: false, quick_add: 'standard', section_id: section.id, skip_styles: true %}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
         {%- for p in dw_col.products limit: 24 -%}
           {%- if p.available and shown < 4 -%}
             {%- assign shown = shown | plus: 1 -%}
