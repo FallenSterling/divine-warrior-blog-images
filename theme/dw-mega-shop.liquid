@@ -1,0 +1,204 @@
+{%- comment -%}
+  Divine Warrior picture mega menu (desktop "Shop" panel).
+  Usage: {% render 'dw-mega-shop', menu: section.settings.menu %}
+  Images: collection image (or first available product image), Shopify CDN sizes, lazy loaded.
+{%- endcomment -%}
+<div class="dwm page-width" data-dw-shop>
+  <ul class="dwm__rail" role="list">
+    {%- assign i = 0 -%}
+    {%- for link in menu.links -%}
+      {%- if link.levels == 2 -%}
+        {%- liquid
+          assign rimg = nil
+          if link.type == 'collection_link'
+            assign rimg = link.object.featured_image
+            if rimg == blank
+              assign rimg = link.object.products.first.featured_image
+            endif
+          endif
+        -%}
+        <li>
+          <a href="{{ link.url }}" class="dwm__tab{% if i == 0 %} is-active{% endif %}" data-dw-tab="{{ i }}">
+            <span class="dwm__dot">
+              {%- if rimg != blank -%}
+                {{ rimg | image_url: width: 96, height: 96, crop: 'center' | image_tag: width: 44, height: 44, loading: 'lazy', decoding: 'async', alt: '', class: 'dwm__dotimg' }}
+              {%- else -%}&#10022;{%- endif -%}
+            </span>
+            <span class="dwm__tabt">{{ link.title | escape }}</span>
+          </a>
+        </li>
+        {%- assign i = i | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+
+  <div class="dwm__main">
+    {%- assign i = 0 -%}
+    {%- for link in menu.links -%}
+      {%- if link.levels == 2 -%}
+        <div class="dwm__panel" data-dw-panel="{{ i }}"{% if i != 0 %} hidden{% endif %}>
+          <div class="dwm__head">
+            <p class="dwm__h">{{ link.title | escape }}</p>
+            <a class="dwm__all" href="{{ link.url }}">Shop all &rarr;</a>
+          </div>
+          <ul class="dwm__tiles" role="list">
+            {%- assign used = '|' -%}
+            {%- for childlink in link.links -%}
+              {%- liquid
+                assign timg = nil
+                if childlink.type == 'collection_link'
+                  assign cand = childlink.object.featured_image
+                  assign key = '|' | append: cand.id | append: '|'
+                  if cand != blank and used contains key
+                    assign cand = nil
+                  endif
+                  assign timg = cand
+                endif
+                if childlink.type == 'page_link'
+                  assign timg = collections['christmas-gift-bundles'].featured_image
+                endif
+                if timg == blank
+                  for gl in childlink.links
+                    if gl.type == 'collection_link'
+                      assign cand = gl.object.featured_image
+                      assign key = '|' | append: cand.id | append: '|'
+                      if cand != blank
+                        unless used contains key
+                          assign timg = cand
+                          break
+                        endunless
+                      endif
+                    endif
+                  endfor
+                endif
+                if timg == blank and childlink.type == 'collection_link'
+                  assign timg = childlink.object.products.first.featured_image
+                endif
+                if timg != blank
+                  assign used = used | append: timg.id | append: '|'
+                endif
+              -%}
+              <li class="dwm__tile">
+                <a class="dwm__pic" href="{{ childlink.url }}">
+                  {%- if timg != blank -%}
+                    {{ timg | image_url: width: 320, height: 320, crop: 'center' | image_tag: width: 160, height: 160, widths: '160, 240, 320', sizes: '(min-width: 1400px) 150px, 120px', loading: 'lazy', decoding: 'async', alt: '', class: 'dwm__img' }}
+                  {%- else -%}<span class="dwm__noimg">&#10022;</span>{%- endif -%}
+                  <span class="dwm__tt">{{ childlink.title | escape }}</span>
+                </a>
+                {%- if childlink.links != blank -%}
+                  <ul class="dwm__sub" role="list">
+                    {%- for gl in childlink.links -%}
+                      <li><a href="{{ gl.url }}"{% if gl.current %} aria-current="page"{% endif %}>{{ gl.title | escape }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+
+          {%- if link.type == 'collection_link' -%}
+            {%- assign shown = 0 -%}
+            <div class="dwm__like">
+              <p class="dwm__likeh">&#10022; You might like</p>
+              <ul class="dwm__prods" role="list">
+                {%- for p in link.object.products limit: 12 -%}
+                  {%- if p.available and p.featured_image != blank and shown < 4 -%}
+                    <li>
+                      <a class="dwm__prod" href="{{ p.url }}">
+                        {{ p.featured_image | image_url: width: 120, height: 120, crop: 'center' | image_tag: width: 56, height: 56, loading: 'lazy', decoding: 'async', alt: '', class: 'dwm__pimg' }}
+                        <span class="dwm__pt"><span class="dwm__pn">{{ p.title | escape }}</span><span class="dwm__pp">{{ p.price | money }}</span></span>
+                      </a>
+                    </li>
+                    {%- assign shown = shown | plus: 1 -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+        </div>
+        {%- assign i = i | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  <div class="dwm__side">
+    <a class="dwm__xmas" href="/collections/christmas-collection">
+      <span class="dwm__snow" aria-hidden="true"><i>&#10052;&#xFE0E;</i><i>&#10022;</i><i>&#10052;&#xFE0E;</i><i>&#10022;</i><i>&#10052;&#xFE0E;</i><i>&#10022;</i></span>
+      <span class="dwm__xt">&#10052;&#xFE0E; The Christmas Shop</span>
+      <span class="dwm__xs">Gift bundles, advent calendars &amp; stocking fillers</span>
+    </a>
+    <p class="dwm__gg"><span>Gift guides</span>
+      <a href="/pages/mystical-christmas-gifts-for-her">For her</a>
+      <a href="/pages/yule-gifts-for-witches-pagans">Yule &amp; witches</a>
+      <a href="/pages/spiritual-stocking-fillers-secret-santa">Under &pound;15</a>
+      <a href="/pages/christmas-gifts-for-tarot-lovers">Tarot lovers</a>
+      <a href="/pages/crystal-christmas-gifts">Crystals</a>
+    </p>
+    <a class="dwm__bundle" href="/pages/build-your-bundle"><b>&#10022; Build your bundle</b><span>Save up to 20%</span></a>
+    <a class="dwm__btn" href="/pages/mystical-gift-finder-uk">Gift Finder &rarr;</a>
+    <a class="dwm__btn" href="{{ routes.all_products_collection_url }}">Shop everything &rarr;</a>
+  </div>
+</div>
+
+<style>
+  @media screen and (min-width: 990px) {
+    #MegaMenu-Content-shop { background: #f8f3e9; border-top: 2px solid #c9a24a; }
+    .dwm { display: grid; grid-template-columns: 250px minmax(0, 1fr) 230px; gap: 30px; align-items: start; }
+    .dwm__rail { list-style: none; margin: 0; padding: 0 22px 0 0; border-right: 1px solid rgba(160,130,70,.28); }
+    .dwm__tab { display: flex; align-items: center; gap: 12px; padding: 7px 10px; margin-bottom: 3px; border-radius: 40px; text-decoration: none; color: #33312e; font-size: 17px; line-height: 1.2; }
+    .dwm__tab:hover { color: #8a6a2a; }
+    .dwm__tab.is-active { background: #efe4cc; color: #7a5a1e; }
+    .dwm__dot { flex: 0 0 44px; width: 44px; height: 44px; border-radius: 50%; overflow: hidden; border: 1px solid #d9c08a; background: #fffaf0; display: flex; align-items: center; justify-content: center; color: #b8923f; }
+    .dwm__dotimg { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .dwm__panel[hidden] { display: none !important; }
+    .dwm__head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 0 0 16px; }
+    .dwm__h { margin: 0; font-size: 26px; line-height: 1.2; font-style: italic; color: #33312e; }
+    .dwm__all { color: #8a6a2a; font-size: 15px; text-decoration: none; letter-spacing: .3px; white-space: nowrap; }
+    .dwm__all:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .dwm__tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px 18px; }
+    .header--top-center .dwm__tiles > li, .dwm__tiles > li { width: auto !important; padding: 0 !important; }
+    .dwm__pic { display: block; text-decoration: none; color: #33312e; text-align: center; }
+    .dwm__img, .dwm__noimg { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 14px; border: 1px solid #e3d3ad; background: #fffdf8; transition: transform .25s ease, box-shadow .25s ease; }
+    .dwm__noimg { display: flex; align-items: center; justify-content: center; font-size: 28px; color: #c9a24a; }
+    .dwm__pic:hover .dwm__img { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(51,49,46,.12); }
+    .dwm__tt { display: block; margin-top: 8px; font-size: 15.5px; line-height: 1.3; font-weight: 600; }
+    .dwm__sub { list-style: none; margin: 6px 0 0; padding: 0; text-align: center; }
+    .dwm__sub a { display: block; padding: 2px 0; font-size: 13.5px; line-height: 1.35; color: #5d574e; text-decoration: none; }
+    .dwm__sub a:hover { color: #8a6a2a; text-decoration: underline; text-underline-offset: 2px; }
+    .dwm__like { margin-top: 24px; padding-top: 18px; border-top: 1px dashed rgba(160,130,70,.45); }
+    .dwm__likeh { margin: 0 0 12px; font-size: 17px; font-style: italic; color: #8a6a2a; }
+    .dwm__prods { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 14px; }
+    .dwm__prods > li { width: auto !important; padding: 0 !important; }
+    .dwm__prod { display: flex; align-items: center; gap: 12px; padding: 8px 10px; border: 1px solid #eadcbc; border-radius: 12px; background: #fffdf8; text-decoration: none; color: #33312e; }
+    .dwm__prod:hover { border-color: #c9a24a; }
+    .dwm__pimg { flex: 0 0 56px; width: 56px; height: 56px; object-fit: cover; border-radius: 8px; }
+    .dwm__pt { display: flex; flex-direction: column; min-width: 0; }
+    .dwm__pn { font-size: 13.5px; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    .dwm__pp { margin-top: 3px; font-size: 13.5px; color: #8a6a2a; }
+    .dwm__side { display: flex; flex-direction: column; gap: 10px; }
+    .dwm__xmas { position: relative; overflow: hidden; display: block; padding: 18px 16px; border-radius: 16px; text-align: center; text-decoration: none; background: radial-gradient(ellipse at top, #4a4640 0%, #33312e 75%); border: 1px solid rgba(220,189,108,.6); }
+    .dwm__xt { position: relative; display: block; font-size: 19px; font-style: italic; color: #e6c97a; }
+    .dwm__xs { position: relative; display: block; margin-top: 6px; font-size: 13px; line-height: 1.45; color: #e9e2d3; }
+    .dwm__snow i { position: absolute; top: -12px; font-style: normal; font-size: 11px; color: rgba(246,241,231,.6); animation: dwm-fall 7s linear infinite; }
+    .dwm__snow i:nth-child(1) { left: 8%; animation-delay: 0s; } .dwm__snow i:nth-child(2) { left: 26%; animation-delay: -3s; color: #e6c97a; }
+    .dwm__snow i:nth-child(3) { left: 46%; animation-delay: -5s; } .dwm__snow i:nth-child(4) { left: 64%; animation-delay: -1.5s; color: #e6c97a; }
+    .dwm__snow i:nth-child(5) { left: 80%; animation-delay: -4s; } .dwm__snow i:nth-child(6) { left: 93%; animation-delay: -6s; color: #e6c97a; }
+    @keyframes dwm-fall { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translateY(130px) rotate(160deg); opacity: 0; } }
+    .dwm__gg { margin: 0 0 4px; text-align: center; font-size: 13px; line-height: 1.7; color: #6b655c; }
+    .dwm__gg span { display: block; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #a8842c; }
+    .dwm__gg a { color: #33312e; text-decoration: underline; text-decoration-color: #c9a24a; text-underline-offset: 3px; margin: 0 4px; white-space: nowrap; }
+    .dwm__bundle { display: block; padding: 14px 12px; border-radius: 16px; text-align: center; text-decoration: none; color: #33312e; background: linear-gradient(180deg, #dcbd6c, #b8923f); }
+    .dwm__bundle b { display: block; font-size: 17px; letter-spacing: .3px; }
+    .dwm__bundle span { display: block; font-size: 13.5px; margin-top: 2px; }
+    .dwm__btn { display: block; padding: 11px 12px; border-radius: 40px; border: 1px solid #c9a24a; text-align: center; text-decoration: none; color: #33312e; font-size: 15px; background: #fffdf8; }
+    .dwm__btn:hover { background: #fff; border-color: #8a6a2a; }
+    @media (prefers-reduced-motion: reduce) { .dwm__snow { display: none; } }
+  }
+  @media screen and (min-width: 990px) and (max-width: 1279px) {
+    .dwm { grid-template-columns: 210px minmax(0, 1fr); }
+    .dwm__side { grid-column: 1; grid-row: 2; margin-top: -10px; }
+    .dwm__gg { display: none; }
+    .dwm__main { grid-column: 2; grid-row: 1 / span 2; }
+    .dwm__tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+</style>
