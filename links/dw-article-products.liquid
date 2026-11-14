@@ -86,6 +86,7 @@
           {%- endif -%}
         {%- endfor -%}
         {%- for p in dw_col.products limit: 24 -%}
+          {%- if dw_phandles contains p.handle -%}{%- continue -%}{%- endif -%}
           {%- if p.available and shown < 4 -%}
             {%- assign shown = shown | plus: 1 -%}
             <li class="grid__item">
