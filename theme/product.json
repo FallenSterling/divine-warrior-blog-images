@@ -1,0 +1,185 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "loox_reviews_loox_rating_R3TRCa": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-rating/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "contentSize": 20,
+            "pattern": "",
+            "hideText": false,
+            "alignment": "",
+            "layout": "",
+            "textColor": "",
+            "starColor": "#d2ab2e",
+            "showAllReviews": true,
+            "looxOpenFloatingWidget": true,
+            "emptyRatingWidget": false
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_eCPdnF": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "square"
+          }
+        },
+        "quantity_selector_wbEGCf": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_XtXPnD": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "collapsible-row-1": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Delivering Your Magic",
+            "icon": "perfume",
+            "content": "<p>Your magic arrives in 3-5 working days with <br/>Standard UK Delivery £3.99, FREE from £24.99 – Details in <a href=\"/pages/shipping\" title=\"Shipping\">Shipping Policy</a>.</p>",
+            "page": "product-features"
+          }
+        },
+        "collapsible-row-0": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Sacred Tool Care",
+            "icon": "fire",
+            "content": "<p>To keep your spiritual tools in optimal condition, cleanse crystals regularly using running water (avoid for water-soluble stones like selenite), salt water soaks, burying in salt or earth, or smudging with sage or palo santo smoke. Condition leather items occasionally with natural leather cream to prevent cracking, and store away from direct sunlight and moisture. Clean singing bowls with a soft cloth or mild soap and water, avoiding harsh chemicals, and store on padded surfaces to protect their resonance. Handle all your sacred tools with care and respect to maintain their quality and spiritual effectiveness.</p>",
+            "page": "materials-and-care"
+          }
+        },
+        "collapsible-row-2": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Embrace Your Spiritual Journey",
+            "icon": "eye",
+            "content": "<p>True magic happens when intention meets action. Whether you're just beginning to explore your spiritual path or deepening an established practice, remember that every ritual, meditation, or moment of mindfulness is a step toward transformation. Trust your intuition—it knows exactly what you need. Share your experiences, connect with fellow seekers, and celebrate the small victories along the way. The ancient wisdom you're tapping into has guided countless souls before you, and now it's your turn to write your own story. What will you discover about yourself today?</p>",
+            "page": "merchandising-tips"
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "loox_reviews_loox_rating_R3TRCa",
+        "price",
+        "variant_picker_eCPdnF",
+        "quantity_selector_wbEGCf",
+        "buy_buttons_XtXPnD",
+        "description",
+        "collapsible-row-1",
+        "collapsible-row-0",
+        "collapsible-row-2",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "columns",
+        "media_position": "right",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 24,
+        "padding_bottom": 0
+      }
+    },
+    "1759585246c348a01e": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "quick-order-list": {
+      "type": "quick-order-list",
+      "disabled": true,
+      "settings": {
+        "variants_per_page": 50,
+        "show_image": false,
+        "show_sku": true,
+        "color_scheme": "scheme-1",
+        "padding_top": 44,
+        "padding_bottom": 0
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You May Also Love",
+        "heading_size": "h2",
+        "products_to_show": 5,
+        "columns_desktop": 5,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 44
+      }
+    },
+    "1759621396a5ed2355": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "custom_liquid_9hqbR8": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".bespoke-product-text {text-align: center; max-width: 1400px; margin: 0 auto;}"
+      ],
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "{% if product.metafields.custom.custom_text != blank %}\n\n    <div class=\"bespoke-product-text\">\n      <h2>{{ product.metafields.custom.custom_heading.value }}</h2>\n      {{ product.metafields.custom.custom_text | metafield_tag }}\n    </div>\n\n    <div class=\"bespoke-product-text\">\n      <h2>{{ product.metafields.custom.faq_heading.value }}</h2>\n      {{ product.metafields.custom.faq_text | metafield_tag }}\n    </div>\n\n  {% endif %}",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1759585246c348a01e",
+    "quick-order-list",
+    "related-products",
+    "1759621396a5ed2355",
+    "custom_liquid_9hqbR8"
+  ]
+}
