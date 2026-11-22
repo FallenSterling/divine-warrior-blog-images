@@ -1,0 +1,302 @@
+{
+ "sections": {
+  "guide": {
+   "type": "dw-buying-guide",
+   "blocks": {
+    "p_spell": {
+     "type": "products",
+     "settings": {
+      "pill": "Spell candles",
+      "heading": "Magic spell candles",
+      "intro": "Each candle is named for a single intention and poured in its traditional colour, from luck and love to protection and calm. Hold your wish in mind as you strike the match.",
+      "collection": "manifestation-candles",
+      "limit": 8
+     }
+    },
+    "p_sets": {
+     "type": "products",
+     "settings": {
+      "pill": "Sets & jars",
+      "heading": "Spell candle sets & jars",
+      "intro": "Slender candles in bundles of six or twelve, made to burn down in a single sitting, alongside scented spell jars and tube candles. A lovely way to keep a nightly ritual, or to follow a cycle of the moon.",
+      "collection": "divine-spell-candles",
+      "limit": 8
+     }
+    },
+    "g1": {
+     "type": "glance",
+     "settings": {
+      "q": "What is a spell candle?",
+      "a": "A small candle lit for one intention, with that wish held clearly in mind. In candle lore the colour carries the meaning, so green is lit for luck and growth and pink for friendship and tenderness."
+     }
+    },
+    "g2": {
+     "type": "glance",
+     "settings": {
+      "q": "Which colour should I choose?",
+      "a": "Match the colour to your intention using the colour guide below. If you are unsure, white is the traditional all-purpose candle and may stand in for any other colour."
+     }
+    },
+    "g3": {
+     "type": "glance",
+     "settings": {
+      "q": "What else do I need?",
+      "a": "Only a heatproof holder and a quiet moment. Many people write their intention on a slip of paper or carve a single word into the wax before lighting."
+     }
+    },
+    "g4": {
+     "type": "glance",
+     "settings": {
+      "q": "How do I burn one safely?",
+      "a": "Stand it upright on a heatproof surface, away from draughts, curtains, children and pets, and never leave a lit flame unattended. Small candles are best in a holder made for them."
+     }
+    },
+    "c1": {
+     "type": "choice",
+     "settings": {
+      "name": "White",
+      "swatch": "#f7f3ea",
+      "meaning": "Cleansing, peace and new beginnings. In candle lore white is the all-purpose colour, lit to clear the air and begin again.",
+      "product_1": "set-of-12-white-happiness-spell-candles",
+      "product_2": "magic-spell-candle-cleansing"
+     }
+    },
+    "c2": {
+     "type": "choice",
+     "settings": {
+      "name": "Red",
+      "swatch": "#9e2b25",
+      "meaning": "Love, passion and courage. The colour of the heart's fire, traditionally lit to draw romance or to find your nerve.",
+      "product_1": "magic-spell-candle-love",
+      "product_2": "magic-spell-candle-seduction"
+     }
+    },
+    "c3": {
+     "type": "choice",
+     "settings": {
+      "name": "Pink",
+      "swatch": "#e7a6b6",
+      "meaning": "Friendship, tenderness and self-love. A softer flame than red, lit for kindness, affection and mending bonds.",
+      "product_1": "set-of-12-pink-friendship-spell-candles",
+      "product_2": "magic-spell-candle-friendship"
+     }
+    },
+    "c4": {
+     "type": "choice",
+     "settings": {
+      "name": "Orange",
+      "swatch": "#e0782f",
+      "meaning": "Confidence, creativity and courage to begin. Said to lend warmth and momentum to new ventures.",
+      "product_1": "magic-spell-candle-confidence",
+      "product_2": "manifest-magic-candles-pack-of-12-orange-sacred-chakra991"
+     }
+    },
+    "c5": {
+     "type": "choice",
+     "settings": {
+      "name": "Yellow",
+      "swatch": "#e9c544",
+      "meaning": "Success, joy and a clear mind. A bright, sunny colour traditionally lit before exams, interviews and fresh projects.",
+      "product_1": "set-of-12-yellow-success-spell-candles",
+      "product_2": "magic-spell-candle-success"
+     }
+    },
+    "c6": {
+     "type": "choice",
+     "settings": {
+      "name": "Green",
+      "swatch": "#3f7a4a",
+      "meaning": "Luck, prosperity and growth. The colour of the green and growing world, lit for abundance and good fortune.",
+      "product_1": "magic-spell-candle-luck",
+      "product_2": "manifest-magic-candles-pack-of-12-green-heart-chakra992"
+     }
+    },
+    "c7": {
+     "type": "choice",
+     "settings": {
+      "name": "Light blue",
+      "swatch": "#9cc3e0",
+      "meaning": "Peace, calm and harmony. A gentle colour for quiet evenings and for restoring balance after a difficult day.",
+      "product_1": "set-of-12-light-blue-peace-spell-candles",
+      "product_2": "magic-spell-candle-balance"
+     }
+    },
+    "c8": {
+     "type": "choice",
+     "settings": {
+      "name": "Blue",
+      "swatch": "#2f5d9c",
+      "meaning": "Wisdom, truth and honest words. Traditionally lit when you need clarity or a difficult conversation to go well.",
+      "product_1": "set-of-12-blue-wisdom-spell-candles",
+      "product_2": "manifest-magic-candles-pack-of-12-blue-throat-chakra992"
+     }
+    },
+    "c9": {
+     "type": "choice",
+     "settings": {
+      "name": "Purple",
+      "swatch": "#6b4a8e",
+      "meaning": "Intuition, ambition and spiritual work. A colour of mystery, lit for divination, meditation and reaching higher.",
+      "product_1": "set-of-12-purple-prosperity-spell-candles",
+      "product_2": "magic-spell-candle-prosperity"
+     }
+    },
+    "c10": {
+     "type": "choice",
+     "settings": {
+      "name": "Black",
+      "swatch": "#33312e",
+      "meaning": "Protection, banishing and endings. In folk tradition the black candle draws in and closes away what no longer serves you.",
+      "product_1": "magic-spell-candle-protection",
+      "product_2": "manifest-magic-candles-pack-of-12-black994"
+     }
+    },
+    "p_crystal": {
+     "type": "products",
+     "settings": {
+      "pill": "Crystal candles",
+      "heading": "Crystal candles",
+      "intro": "Candles with a gemstone hidden in the wax or set among dried flowers, revealed as the flame burns down. Tarot, zodiac and chakra designs make them a favourite gift.",
+      "collection": "crystal-candles-collection",
+      "limit": 8
+     }
+    },
+    "p_witch": {
+     "type": "products",
+     "settings": {
+      "pill": "Ritual candles",
+      "heading": "Ancient Witch ritual candles",
+      "intro": "Richly scented, darkly beautiful candles for altar work and long winter evenings.",
+      "collection": "ancient-witch-ritual-candles",
+      "limit": 8
+     }
+    },
+    "p_hold": {
+     "type": "products",
+     "settings": {
+      "pill": "Holders",
+      "heading": "Candle holders",
+      "intro": "Glass holders pressed with real flowers, to cradle a spell candle or a tealight on your altar.",
+      "collection": "natural-floral-glass-candle-holders",
+      "limit": 8
+     }
+    },
+    "f1": {
+     "type": "faq",
+     "settings": {
+      "q": "Should I let a spell candle burn all the way down?",
+      "a": "Tradition says yes, which is why small candles are so popular: they burn down in a single sitting. If you need to stop, snuff the flame rather than blowing it out, and relight it later with the same intention. Never leave a candle burning unattended."
+     }
+    },
+    "f2": {
+     "type": "faq",
+     "settings": {
+      "q": "Do candle colours really work?",
+      "a": "Candle colours are a matter of tradition and personal meaning, not proven effect. What many people find is that lighting a candle with a clear intention is a calm, lovely way to focus, reflect and mark a moment."
+     }
+    },
+    "f3": {
+     "type": "faq",
+     "settings": {
+      "q": "What does it mean if my candle flickers or the wax leaves shapes?",
+      "a": "Reading the flame and the wax is an old form of divination called ceromancy. Our guides to candle flame meanings and candle wax reading, linked below, explain the traditional interpretations."
+     }
+    },
+    "f4": {
+     "type": "faq",
+     "settings": {
+      "q": "Are spell candles a good gift?",
+      "a": "Yes. A set of colours, a crystal candle or a candle with a floral glass holder makes a thoughtful gift. Mix any three items in our bundle builder to save 10%, five to save 15% and eight or more to save 20%."
+     }
+    },
+    "f5": {
+     "type": "faq",
+     "settings": {
+      "q": "How quickly will my candles arrive?",
+      "a": "Orders are dispatched within 1–2 working days and usually arrive 3–5 working days later. UK delivery is £3.99, and free on orders of £24.99 or more."
+     }
+    },
+    "l1": {
+     "type": "links",
+     "settings": {
+      "title": "Candle flame meanings",
+      "note": "What a flickering, high or dancing flame is said to mean",
+      "url": "/blogs/guide-to-ancient-arts-timeless-wisdom-practice/why-is-my-candle-flickering-candle-flame-meanings-and-what-your-spell-candle-is-trying-to-tell-you"
+     }
+    },
+    "l2": {
+     "type": "links",
+     "settings": {
+      "title": "Candle wax reading",
+      "note": "How to read the shapes left behind after spellwork",
+      "url": "/blogs/guide-to-ancient-arts-timeless-wisdom-practice/candle-wax-reading-ceromancy-complete-guide-to-reading-wax-after-spell-work"
+     }
+    },
+    "l3": {
+     "type": "links",
+     "settings": {
+      "title": "Love spell candles",
+      "note": "Candle rituals for romance and connection",
+      "url": "/blogs/guide-to-ancient-arts-timeless-wisdom-practice/love-spell-candles-rituals-to-attract-romance-and-deepen-connection"
+     }
+    },
+    "l4": {
+     "type": "links",
+     "settings": {
+      "title": "Candle magic guides by Rowan Hart",
+      "note": "Downloadable guides to candle magic and divination",
+      "url": "/collections/spiritual-ebooks-candle-magic-tarot-divination-guides"
+     }
+    }
+   },
+   "block_order": [
+    "p_spell",
+    "p_sets",
+    "g1",
+    "g2",
+    "g3",
+    "g4",
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "c9",
+    "c10",
+    "p_crystal",
+    "p_witch",
+    "p_hold",
+    "f1",
+    "f2",
+    "f3",
+    "f4",
+    "f5",
+    "l1",
+    "l2",
+    "l3",
+    "l4"
+   ],
+   "settings": {
+    "kicker": "A Divine Warrior guide",
+    "show_xmas": true,
+    "title": "Spell Candles: Choosing by Colour & Intention",
+    "lead": "Small flames for a single wish. Find your colour, from love and luck to protection and calm, and light it the old way.",
+    "trust": "Over 150 candles · dispatched in 1–2 working days · free UK delivery over £24.99",
+    "glance_pill": "At a glance",
+    "glance_heading": "At a glance",
+    "chooser_pill": "Colour guide",
+    "chooser_heading": "Which candle colour is right for me?",
+    "chooser_intro": "Tap a colour to see its traditional meaning and the candles that carry it.",
+    "faq_heading": "Questions, answered",
+    "links_pill": "Further reading",
+    "links_heading": "Further reading"
+   }
+  }
+ },
+ "order": [
+  "guide"
+ ]
+}
